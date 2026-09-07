@@ -1810,9 +1810,11 @@ footer{
 
         <iframe
             id="gameFrame"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"
             allow="fullscreen; autoplay; gamepad; orientation-lock"
             allowfullscreen
-            scrolling="no">
+            scrolling="no"
+            referrerpolicy="no-referrer-when-downgrade">
         </iframe>
 
     </div>
@@ -1961,55 +1963,47 @@ const games = [
 
 function playGame(index){
 
-    const game=games[index];
+    const game = games[index];
 
     if(!game){
         return;
     }
 
-    const player=document.getElementById("player");
+    const player = document.getElementById("player");
+    const frame = document.getElementById("gameFrame");
+    const loading = document.getElementById("loading");
 
-    const frame=document.getElementById("gameFrame");
+    document.getElementById("playerTitle").textContent = game.title;
 
-    const loading=document.getElementById("loading");
-
-    document.getElementById("playerTitle").textContent=
-        game.title;
-
-    loading.style.display="flex";
-
-    player.style.display="flex";
+    loading.style.display = "flex";
+    player.style.display = "flex";
+    document.body.style.overflow = "hidden";
 
     /*
-       GameDistribution recommends the
-       gd_sdk_referrer_url parameter.
-       
-       For your deployed site, this becomes
-       the current page URL.
+       Official GameDistribution iframe player.
+
+       The sandbox prevents the embedded game from
+       navigating the main Rishant Games page away
+       to another website.
     */
 
-    const referrer=
-        window.location.href.split("#")[0];
+    const referrer = window.location.href.split("#")[0];
 
-    const src=
+    const src =
         "https://html5.gamedistribution.com/"
-        +game.id
-        +"/?gd_sdk_referrer_url="
-        +encodeURIComponent(referrer);
+        + game.id
+        + "/?gd_sdk_referrer_url="
+        + encodeURIComponent(referrer);
 
-    frame.src=src;
-
-    frame.onload=function(){
+    frame.onload = function(){
 
         setTimeout(function(){
-
-            loading.style.display="none";
-
-        },800);
+            loading.style.display = "none";
+        }, 800);
 
     };
 
-    document.body.style.overflow="hidden";
+    frame.src = src;
 }
 
 
