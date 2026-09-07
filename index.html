@@ -731,6 +731,26 @@ footer{
         height:110px;
     }
 }
+
+/* Game player reliability fixes */
+#player{
+    z-index:99999;
+}
+#frameWrap{
+    position:relative;
+    z-index:1;
+}
+#gameFrame{
+    display:block;
+    width:100%;
+    height:100%;
+    border:0;
+    background:#000;
+}
+#loading{
+    z-index:5;
+}
+
 </style>
 </head>
 
@@ -1810,11 +1830,11 @@ footer{
 
         <iframe
             id="gameFrame"
-            sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"
+            title="Rishant Games Player"
             allow="fullscreen; autoplay; gamepad; orientation-lock"
             allowfullscreen
             scrolling="no"
-            referrerpolicy="no-referrer-when-downgrade">
+            referrerpolicy="strict-origin-when-cross-origin">
         </iframe>
 
     </div>
@@ -1966,44 +1986,51 @@ function playGame(index){
     const game = games[index];
 
     if(!game){
+        console.error("Game not found:", index);
         return;
     }
 
     const player = document.getElementById("player");
     const frame = document.getElementById("gameFrame");
     const loading = document.getElementById("loading");
+    const title = document.getElementById("playerTitle");
 
-    document.getElementById("playerTitle").textContent = game.title;
+    if(!player || !frame){
+        console.error("Game player elements not found.");
+        return;
+    }
+
+    title.textContent = game.title;
 
     loading.style.display = "flex";
     player.style.display = "flex";
     document.body.style.overflow = "hidden";
 
-    /*
-       Official GameDistribution iframe player.
-
-       The sandbox prevents the embedded game from
-       navigating the main Rishant Games page away
-       to another website.
-    */
-
+    // Official GameDistribution iframe URL.
+    // No sandbox is used because GameDistribution games need
+    // their normal iframe permissions to run correctly.
     const referrer = window.location.href.split("#")[0];
 
     const src =
-        "https://html5.gamedistribution.com/"
-        + game.id
-        + "/?gd_sdk_referrer_url="
-        + encodeURIComponent(referrer);
+        "https://html5.gamedistribution.com/" +
+        game.id +
+        "/?gd_sdk_referrer_url=" +
+        encodeURIComponent(referrer);
+
+    // Remove any previous handler before loading the new game.
+    frame.onload = null;
 
     frame.onload = function(){
-
         setTimeout(function(){
             loading.style.display = "none";
-        }, 800);
-
+        }, 700);
     };
 
-    frame.src = src;
+    frame.src = "about:blank";
+
+    setTimeout(function(){
+        frame.src = src;
+    }, 50);
 }
 
 
