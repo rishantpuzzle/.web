@@ -2,2223 +2,2471 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Rishant Games</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>UMINGLE - Chat & Video</title>
+<link rel="icon" href="logo.png">
 
 <style>
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
+    font-family:Inter,Arial,sans-serif;
 }
 
 :root{
-    --bg:#070a11;
-    --bg2:#0d121c;
-    --card:#111722;
-    --card2:#171e2a;
-    --border:#252d3b;
-    --text:#fff;
-    --muted:#8993a5;
-    --purple:#7957ff;
-    --blue:#00c8ff;
+    --bg:#070b16;
+    --panel:#101729;
+    --panel2:#151e33;
+    --border:#26314a;
+    --text:#f5f7ff;
+    --muted:#8994ad;
+    --primary:#7c5cff;
+    --primary2:#5b3df5;
+    --green:#24d17e;
+    --red:#ff4f67;
 }
 
 body{
-    background:var(--bg);
+    background:
+        radial-gradient(circle at top left,#18234b 0,transparent 35%),
+        radial-gradient(circle at bottom right,#281553 0,transparent 35%),
+        var(--bg);
     color:var(--text);
-    font-family:Arial,Helvetica,sans-serif;
     min-height:100vh;
-}
-
-button,
-input{
-    font-family:inherit;
 }
 
 button{
     cursor:pointer;
 }
 
-/* ================= HEADER ================= */
+.hidden{
+    display:none!important;
+}
 
-header{
-    height:72px;
-    position:sticky;
-    top:0;
-    z-index:1000;
+/* LOGIN */
 
+#loginScreen{
+    min-height:100vh;
     display:flex;
     align-items:center;
+    justify-content:center;
+    padding:20px;
+}
 
-    padding:0 5%;
-
-    background:rgba(7,10,17,.90);
-    backdrop-filter:blur(18px);
-
-    border-bottom:1px solid var(--border);
+.login-card{
+    width:100%;
+    max-width:440px;
+    background:rgba(16,23,41,.92);
+    border:1px solid var(--border);
+    border-radius:28px;
+    padding:42px 30px;
+    text-align:center;
+    box-shadow:0 30px 80px rgba(0,0,0,.45);
 }
 
 .logo{
-    font-size:25px;
-    font-weight:1000;
-    letter-spacing:-1px;
-    white-space:nowrap;
-}
-
-.logo span{
-    color:var(--purple);
-}
-
-.nav{
-    display:flex;
-    gap:24px;
-    margin-left:45px;
-}
-
-.nav button{
-    border:none;
-    background:none;
-    color:#8e98aa;
-    font-weight:bold;
-    transition:.2s;
-}
-
-.nav button:hover,
-.nav button.active{
-    color:white;
-}
-
-.search{
-    margin-left:auto;
-
-    width:300px;
-    height:42px;
-
-    background:#121824;
-    border:1px solid var(--border);
-    border-radius:12px;
-
+    width:78px;
+    height:78px;
+    margin:0 auto 20px;
+    border-radius:24px;
+    background:linear-gradient(135deg,#7c5cff,#a879ff);
     display:flex;
     align-items:center;
-
-    padding:0 12px;
-}
-
-.search span{
-    margin-right:8px;
-}
-
-.search input{
-    width:100%;
-    border:none;
-    outline:none;
-    background:none;
-    color:white;
-}
-
-.search input::placeholder{
-    color:#667084;
-}
-
-/* ================= MAIN ================= */
-
-main{
-    max-width:1450px;
-    margin:auto;
-    padding:35px 5% 70px;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-    min-height:350px;
-
-    border:1px solid var(--border);
-    border-radius:25px;
-
-    padding:48px;
-
-    position:relative;
+    justify-content:center;
+    font-size:30px;
+    font-weight:900;
+    box-shadow:0 15px 40px rgba(124,92,255,.35);
     overflow:hidden;
-
-    background:
-    radial-gradient(
-        circle at 80% 20%,
-        rgba(0,200,255,.18),
-        transparent 30%
-    ),
-    radial-gradient(
-        circle at 20% 100%,
-        rgba(121,87,255,.20),
-        transparent 35%
-    ),
-    #101621;
 }
 
-.heroGlow{
-    position:absolute;
-
-    width:300px;
-    height:300px;
-
-    right:-80px;
-    bottom:-100px;
-
-    background:linear-gradient(
-        135deg,
-        var(--purple),
-        var(--blue)
-    );
-
-    filter:blur(100px);
-    opacity:.16;
+.logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
-.hero h1{
-    position:relative;
-    z-index:2;
-
-    font-size:clamp(42px,7vw,78px);
-
-    line-height:.92;
-
-    letter-spacing:-4px;
+.login-card h1{
+    font-size:34px;
+    margin-bottom:8px;
 }
 
-.hero h1 span{
-    background:linear-gradient(
-        90deg,
-        var(--purple),
-        var(--blue)
-    );
-
-    -webkit-background-clip:text;
-    color:transparent;
+.login-card h1 span{
+    color:#9279ff;
 }
 
-.hero p{
-    position:relative;
-    z-index:2;
-
-    max-width:620px;
-
-    color:#9aa4b6;
-
+.login-card p{
+    color:var(--muted);
     line-height:1.6;
-
-    margin:20px 0 25px;
+    margin-bottom:28px;
 }
 
-.heroButtons{
-    position:relative;
-    z-index:2;
-
+.google-btn{
+    width:100%;
+    padding:15px;
+    border:1px solid #39445e;
+    background:white;
+    color:#202124;
+    border-radius:13px;
+    font-size:15px;
+    font-weight:700;
     display:flex;
+    justify-content:center;
+    align-items:center;
     gap:12px;
 }
 
-.primaryBtn{
-    border:none;
-
-    padding:13px 21px;
-
-    border-radius:11px;
-
-    background:linear-gradient(
-        90deg,
-        var(--purple),
-        #6244e8
-    );
-
-    color:white;
-
-    font-weight:bold;
-
-    box-shadow:
-        0 10px 30px rgba(121,87,255,.25);
+.google-icon{
+    font-size:20px;
+    font-weight:900;
 }
 
-.secondaryBtn{
-    border:1px solid var(--border);
+/* APP */
 
-    padding:13px 21px;
-
-    border-radius:11px;
-
-    background:#151c28;
-
-    color:white;
-
-    font-weight:bold;
+#app{
+    min-height:100vh;
 }
 
-/* ================= SECTION ================= */
-
-.section{
-    margin-top:45px;
-}
-
-.sectionHead{
+.topbar{
+    height:72px;
+    border-bottom:1px solid var(--border);
+    background:rgba(7,11,22,.85);
+    backdrop-filter:blur(18px);
     display:flex;
-    justify-content:space-between;
     align-items:center;
-
-    margin-bottom:18px;
+    justify-content:space-between;
+    padding:0 22px;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
-.sectionHead h2{
-    font-size:25px;
-}
-
-.sectionHead small{
-    color:#707b8f;
-}
-
-/* ================= CATEGORIES ================= */
-
-.categories{
+.brand{
     display:flex;
-    flex-wrap:wrap;
-    gap:9px;
+    align-items:center;
+    gap:11px;
 }
 
-.category{
-    border:1px solid var(--border);
-
-    background:#111722;
-
-    color:#9ba5b6;
-
-    padding:10px 16px;
-
-    border-radius:9px;
-
-    transition:.2s;
-}
-
-.category:hover,
-.category.active{
-    background:#1d2636;
-    color:white;
-    border-color:#3a465b;
-}
-
-/* ================= GAMES ================= */
-
-.games{
-    display:grid;
-
-    grid-template-columns:
-    repeat(4,minmax(0,1fr));
-
-    gap:17px;
-}
-
-.gameCard{
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:16px;
-
-    overflow:hidden;
-
-    transition:.2s;
-
-    cursor:pointer;
-}
-
-.gameCard:hover{
-    transform:translateY(-5px);
-
-    border-color:#455168;
-
-    box-shadow:
-        0 15px 35px rgba(0,0,0,.25);
-}
-
-.gameThumb{
-    height:165px;
-
+.brand-logo{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    background:linear-gradient(135deg,#7c5cff,#a879ff);
     display:flex;
-
     align-items:center;
     justify-content:center;
-
-    position:relative;
-
-    font-size:62px;
+    font-weight:900;
+    overflow:hidden;
 }
 
-.gameThumb::after{
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-    linear-gradient(
-        180deg,
-        transparent,
-        rgba(0,0,0,.25)
-    );
+.brand-logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
-.badge{
-    position:absolute;
-
-    z-index:2;
-
-    top:10px;
-    left:10px;
-
-    background:rgba(0,0,0,.55);
-
-    border:1px solid rgba(255,255,255,.1);
-
-    padding:5px 8px;
-
-    border-radius:6px;
-
-    font-size:10px;
-
-    color:#dfe5ee;
+.brand strong{
+    font-size:19px;
 }
 
-.playIcon{
-    position:absolute;
+.brand small{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+}
 
-    z-index:3;
+.user-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
 
-    right:10px;
-    bottom:10px;
-
+.user-photo{
     width:38px;
     height:38px;
-
     border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:white;
-
-    color:#111;
-
-    font-size:15px;
-
-    opacity:0;
-
-    transform:scale(.8);
-
-    transition:.2s;
+    object-fit:cover;
+    border:2px solid #3c4660;
 }
 
-.gameCard:hover .playIcon{
-    opacity:1;
-    transform:scale(1);
+.user-name{
+    font-size:13px;
+    font-weight:700;
 }
 
-.gameInfo{
-    padding:14px;
+.logout{
+    border:1px solid #343e56;
+    background:#151d30;
+    color:white;
+    padding:9px 13px;
+    border-radius:9px;
 }
 
-.gameInfo h3{
-    font-size:16px;
+/* MAIN */
 
-    margin-bottom:7px;
+.main{
+    max-width:1250px;
+    margin:auto;
+    padding:24px;
 }
 
-.gameInfo p{
-    color:#778297;
-
-    font-size:12px;
-
-    min-height:30px;
+.dashboard{
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:20px;
 }
 
-.gameTags{
-    display:flex;
-
-    gap:6px;
-
-    margin-top:10px;
+.sidebar,
+.content-card{
+    background:rgba(16,23,41,.88);
+    border:1px solid var(--border);
+    border-radius:20px;
 }
 
-.tag{
-    font-size:9px;
-
-    padding:5px 7px;
-
-    background:#1d2532;
-
-    color:#9da7b8;
-
-    border-radius:5px;
+.sidebar{
+    padding:18px;
 }
 
-/* CARD COLORS */
-
-.c1{background:linear-gradient(135deg,#162f56,#3267a7)}
-.c2{background:linear-gradient(135deg,#30205b,#7951ba)}
-.c3{background:linear-gradient(135deg,#244d45,#1a9d78)}
-.c4{background:linear-gradient(135deg,#422f65,#c0528e)}
-.c5{background:linear-gradient(135deg,#523313,#d18425)}
-.c6{background:linear-gradient(135deg,#122d4a,#238dc2)}
-.c7{background:linear-gradient(135deg,#44232e,#b64e63)}
-.c8{background:linear-gradient(135deg,#1f3d31,#54a66d)}
-.c9{background:linear-gradient(135deg,#252d58,#6a78da)}
-.c10{background:linear-gradient(135deg,#3c2715,#ad7131)}
-.c11{background:linear-gradient(135deg,#193e59,#38a2ce)}
-.c12{background:linear-gradient(135deg,#30274c,#8960c6)}
-.c13{background:linear-gradient(135deg,#1e3f55,#42a7d4)}
-.c14{background:linear-gradient(135deg,#4a283e,#c95d87)}
-.c15{background:linear-gradient(135deg,#263d28,#70a64b)}
-.c16{background:linear-gradient(135deg,#3e2f18,#c29b39)}
-.c17{background:linear-gradient(135deg,#183d37,#27a38d)}
-.c18{background:linear-gradient(135deg,#3c2330,#c05d72)}
-.c19{background:linear-gradient(135deg,#263957,#4b82d0)}
-.c20{background:linear-gradient(135deg,#392d17,#d09e3a)}
-
-/* ================= EMPTY ================= */
-
-.empty{
-    display:none;
-
+.profile{
     text-align:center;
-
-    padding:70px 20px;
-
-    color:#6f798b;
-}
-
-/* ================= PLAYER ================= */
-
-#player{
-    display:none;
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:5000;
-
-    background:#05070b;
-
-    flex-direction:column;
-}
-
-.playerTop{
-    height:62px;
-
-    flex-shrink:0;
-
-    display:flex;
-
-    align-items:center;
-
-    padding:0 16px;
-
-    background:#0c1119;
-
+    padding:12px 0 20px;
     border-bottom:1px solid var(--border);
 }
 
-.playerTitle{
-    font-weight:bold;
-}
-
-.playerActions{
-    margin-left:auto;
-
-    display:flex;
-
-    gap:8px;
-}
-
-.playerBtn{
-    border:none;
-
-    background:#1c2533;
-
-    color:white;
-
-    padding:9px 13px;
-
-    border-radius:8px;
-
-    cursor:pointer;
-}
-
-.playerBtn:hover{
-    background:#293447;
-}
-
-#frameWrap{
-    flex:1;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    min-height:0;
-
-    background:#05070b;
-
-    position:relative;
-}
-
-#gameFrame{
-    width:100%;
-    height:100%;
-
-    border:none;
-
-    background:#000;
-}
-
-/* ================= LOADING ================= */
-
-#loading{
-    position:absolute;
-
-    inset:0;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    flex-direction:column;
-
-    background:#05070b;
-
-    z-index:3;
-}
-
-.spinner{
-    width:45px;
-    height:45px;
-
-    border:4px solid #252d3c;
-
-    border-top-color:var(--purple);
-
+.profile img{
+    width:76px;
+    height:76px;
     border-radius:50%;
-
-    animation:spin .8s linear infinite;
+    object-fit:cover;
+    margin-bottom:10px;
 }
 
-#loading p{
-    color:#8c96a8;
-    margin-top:15px;
+.profile h3{
+    font-size:17px;
 }
 
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
+.profile p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:4px;
 }
 
-/* ================= FOOTER ================= */
+.online{
+    color:var(--green)!important;
+    margin-top:8px!important;
+}
 
-footer{
-    border-top:1px solid var(--border);
+.menu{
+    padding-top:15px;
+}
 
-    text-align:center;
+.menu button{
+    width:100%;
+    border:0;
+    background:transparent;
+    color:#cbd3e7;
+    text-align:left;
+    padding:13px;
+    border-radius:10px;
+    margin-bottom:5px;
+    font-size:14px;
+}
 
-    padding:25px;
+.menu button:hover,
+.menu button.active{
+    background:#1b2540;
+    color:white;
+}
 
-    color:#596477;
+.content-card{
+    min-height:650px;
+    overflow:hidden;
+}
 
+/* HOME */
+
+.home{
+    padding:35px;
+}
+
+.hero{
+    padding:35px;
+    border-radius:20px;
+    background:
+        radial-gradient(circle at 80% 20%,rgba(145,111,255,.35),transparent 35%),
+        linear-gradient(135deg,#171f3b,#11172b);
+    border:1px solid #303b59;
+}
+
+.hero h1{
+    font-size:36px;
+    margin-bottom:10px;
+}
+
+.hero h1 span{
+    color:#917bff;
+}
+
+.hero p{
+    color:#a9b3c8;
+    line-height:1.6;
+    max-width:650px;
+}
+
+.match-box{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.match-btn{
+    padding:20px;
+    border:0;
+    border-radius:15px;
+    color:white;
+    background:linear-gradient(135deg,#7c5cff,#5a3bea);
+    font-size:16px;
+    font-weight:800;
+    box-shadow:0 12px 35px rgba(92,61,245,.25);
+}
+
+.secondary-btn{
+    padding:20px;
+    border:1px solid #35405b;
+    border-radius:15px;
+    background:#151d31;
+    color:white;
+    font-size:16px;
+    font-weight:700;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.stat{
+    padding:20px;
+    background:#121a2d;
+    border:1px solid var(--border);
+    border-radius:15px;
+}
+
+.stat strong{
+    display:block;
+    font-size:25px;
+}
+
+.stat span{
+    color:var(--muted);
     font-size:12px;
 }
 
-/* ================= MOBILE ================= */
+/* MATCH */
 
-@media(max-width:1000px){
-
-    .games{
-        grid-template-columns:
-        repeat(3,minmax(0,1fr));
-    }
-
-    .nav{
-        display:none;
-    }
+.match-screen{
+    padding:40px;
+    text-align:center;
+    min-height:650px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 }
 
-@media(max-width:700px){
+.loader{
+    width:85px;
+    height:85px;
+    border:5px solid #28334c;
+    border-top-color:#8a70ff;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin-bottom:25px;
+}
 
-    header{
-        padding:0 15px;
+@keyframes spin{
+    to{transform:rotate(360deg)}
+}
+
+.match-screen h2{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.match-screen p{
+    color:var(--muted);
+}
+
+.cancel-btn{
+    margin-top:25px;
+    padding:12px 22px;
+    border:1px solid #3a455e;
+    border-radius:10px;
+    background:#151d30;
+    color:white;
+}
+
+/* CHAT */
+
+.chat-layout{
+    height:650px;
+    display:grid;
+    grid-template-columns:260px 1fr;
+}
+
+.chat-users{
+    border-right:1px solid var(--border);
+    padding:15px;
+}
+
+.chat-users h3{
+    margin:5px 5px 15px;
+}
+
+.chat-user{
+    padding:13px;
+    border-radius:10px;
+    background:#151e32;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.chat-user img{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+}
+
+.chat-user small{
+    color:var(--green);
+    display:block;
+    margin-top:3px;
+}
+
+.chat-area{
+    display:flex;
+    flex-direction:column;
+}
+
+.chat-header{
+    padding:15px 18px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.chat-person{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.chat-person img{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+}
+
+.call-actions{
+    display:flex;
+    gap:7px;
+}
+
+.icon-btn{
+    width:40px;
+    height:40px;
+    border:1px solid #35405a;
+    background:#161f34;
+    color:white;
+    border-radius:10px;
+}
+
+.messages{
+    flex:1;
+    padding:20px;
+    overflow-y:auto;
+}
+
+.message{
+    max-width:70%;
+    padding:11px 14px;
+    border-radius:15px;
+    margin-bottom:10px;
+    line-height:1.4;
+    font-size:14px;
+}
+
+.message.me{
+    background:#674de9;
+    margin-left:auto;
+    border-bottom-right-radius:4px;
+}
+
+.message.other{
+    background:#202b44;
+    border-bottom-left-radius:4px;
+}
+
+.chat-input{
+    padding:14px;
+    border-top:1px solid var(--border);
+    display:flex;
+    gap:8px;
+}
+
+.chat-input input{
+    flex:1;
+    padding:13px;
+    border-radius:10px;
+    border:1px solid #34405a;
+    background:#0d1425;
+    color:white;
+    outline:none;
+}
+
+.send{
+    width:50px;
+    border:0;
+    border-radius:10px;
+    background:#7659f7;
+    color:white;
+}
+
+/* VIDEO */
+
+.video-screen{
+    min-height:650px;
+    padding:18px;
+    background:#050812;
+    position:relative;
+}
+
+.video-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.video-title span{
+    color:#9ba6bd;
+    font-size:13px;
+}
+
+.video-grid{
+    height:490px;
+    display:grid;
+    grid-template-columns:1fr 260px;
+    gap:12px;
+}
+
+.video-box{
+    background:#0c1220;
+    border:1px solid #27314a;
+    border-radius:16px;
+    overflow:hidden;
+    position:relative;
+}
+
+.video-box video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    background:#080c15;
+}
+
+.video-label{
+    position:absolute;
+    left:12px;
+    bottom:12px;
+    background:rgba(0,0,0,.6);
+    padding:7px 10px;
+    border-radius:8px;
+    font-size:12px;
+}
+
+.video-controls{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    padding-top:15px;
+}
+
+.video-control{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    border:1px solid #38435d;
+    background:#161e31;
+    color:white;
+}
+
+.end-call{
+    background:#e83e58;
+    border:0;
+}
+
+.video-placeholder{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    color:#77839b;
+}
+
+.video-placeholder .avatar{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    margin-bottom:12px;
+}
+
+/* PROFILE */
+
+.profile-page{
+    padding:30px;
+}
+
+.profile-card{
+    max-width:600px;
+}
+
+.form-group{
+    margin-bottom:16px;
+}
+
+.form-group label{
+    display:block;
+    color:#aab4c9;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    padding:13px;
+    background:#0d1425;
+    color:white;
+    border:1px solid #33405a;
+    border-radius:10px;
+    outline:none;
+}
+
+.save-btn{
+    padding:12px 20px;
+    border:0;
+    border-radius:10px;
+    background:#7357f5;
+    color:white;
+    font-weight:bold;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:500;
+    padding:20px;
+}
+
+.modal-card{
+    width:100%;
+    max-width:430px;
+    background:#121a2c;
+    border:1px solid #34405a;
+    border-radius:18px;
+    padding:25px;
+}
+
+.modal-card h3{
+    margin-bottom:10px;
+}
+
+.modal-card p{
+    color:#9aa5ba;
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:18px;
+}
+
+.modal-card textarea{
+    width:100%;
+    height:110px;
+    resize:none;
+    padding:12px;
+    background:#0b1120;
+    border:1px solid #35405b;
+    color:white;
+    border-radius:10px;
+}
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+    margin-top:14px;
+}
+
+.modal-actions button{
+    flex:1;
+    padding:11px;
+    border-radius:9px;
+    border:1px solid #35405b;
+    background:#1a2338;
+    color:white;
+}
+
+.modal-actions .danger{
+    background:#d63e55;
+    border:0;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px){
+
+    .dashboard{
+        grid-template-columns:1fr;
     }
 
-    .logo{
-        font-size:20px;
-    }
-
-    .search{
-        width:42%;
-
-        margin-left:auto;
-    }
-
-    main{
-        padding:20px 15px 50px;
-    }
-
-    .hero{
-        padding:30px 22px;
-        min-height:330px;
-    }
-
-    .games{
-        grid-template-columns:
-        repeat(2,minmax(0,1fr));
-
-        gap:10px;
-    }
-
-    .gameThumb{
-        height:125px;
-        font-size:45px;
-    }
-
-    .gameInfo{
-        padding:10px;
-    }
-
-    .gameInfo h3{
-        font-size:14px;
-    }
-
-    .gameInfo p{
-        font-size:11px;
-    }
-
-    .gameTags{
+    .sidebar{
         display:none;
     }
 
-    .playIcon{
-        opacity:1;
-        transform:scale(.9);
-    }
-}
-
-@media(max-width:430px){
-
-    .search{
-        width:38%;
+    .main{
+        padding:12px;
     }
 
     .hero h1{
-        font-size:43px;
+        font-size:28px;
     }
 
-    .heroButtons{
-        flex-direction:column;
-        align-items:flex-start;
+    .match-box,
+    .stats{
+        grid-template-columns:1fr;
     }
 
-    .gameThumb{
-        height:110px;
+    .chat-layout{
+        grid-template-columns:1fr;
+    }
+
+    .chat-users{
+        display:none;
+    }
+
+    .video-grid{
+        grid-template-columns:1fr;
+    }
+
+    .video-grid .small-video{
+        display:none;
+    }
+
+    .user-name{
+        display:none;
     }
 }
 
-/* Game player reliability fixes */
-#player{
-    z-index:99999;
-}
-#frameWrap{
-    position:relative;
-    z-index:1;
-}
-#gameFrame{
-    display:block;
-    width:100%;
-    height:100%;
-    border:0;
-    background:#000;
-}
-#loading{
-    z-index:5;
-}
+@media(max-width:500px){
 
+    .topbar{
+        padding:0 12px;
+    }
+
+    .brand strong{
+        font-size:16px;
+    }
+
+    .home{
+        padding:15px;
+    }
+
+    .hero{
+        padding:24px;
+    }
+
+    .content-card{
+        border-radius:15px;
+    }
+
+    .login-card{
+        padding:32px 20px;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<header>
+<!-- LOGIN -->
 
-    <div class="logo">
-        RISHANT<span>GAMES</span>
-    </div>
+<section id="loginScreen">
 
-    <div class="nav">
+    <div class="login-card">
 
-        <button
-            class="active"
-            onclick="filterGames('all',this)">
-            Home
-        </button>
-
-        <button
-            onclick="filterGames('arcade',this)">
-            Arcade
-        </button>
-
-        <button
-            onclick="filterGames('puzzle',this)">
-            Puzzle
-        </button>
-
-        <button
-            onclick="filterGames('sports',this)">
-            Sports
-        </button>
-
-        <button
-            onclick="filterGames('racing',this)">
-            Racing
-        </button>
-
-    </div>
-
-    <div class="search">
-
-        <span>🔎</span>
-
-        <input
-            id="searchInput"
-            type="text"
-            placeholder="Search games..."
-            oninput="searchGames()">
-
-    </div>
-
-</header>
-
-
-<main>
-
-<section class="hero">
-
-    <div class="heroGlow"></div>
-
-    <h1>
-        PLAY.<br>
-        <span>REAL.</span><br>
-        GAMES.
-    </h1>
-
-    <p>
-        Welcome to Rishant Games — play real browser games
-        directly inside your browser. No installation required.
-    </p>
-
-    <div class="heroButtons">
-
-        <button
-            class="primaryBtn"
-            onclick="document.getElementById('gamesSection').scrollIntoView({behavior:'smooth'})">
-            🎮 Browse Games
-        </button>
-
-        <button
-            class="secondaryBtn"
-            onclick="filterGames('puzzle')">
-            🧩 Puzzle Games
-        </button>
-
-    </div>
-
-</section>
-
-
-<section class="section">
-
-    <div class="sectionHead">
-
-        <h2>🎮 Categories</h2>
-
-    </div>
-
-    <div class="categories">
-
-        <button
-            class="category active"
-            onclick="filterGames('all',this)">
-            All Games
-        </button>
-
-        <button
-            class="category"
-            onclick="filterGames('arcade',this)">
-            🕹️ Arcade
-        </button>
-
-        <button
-            class="category"
-            onclick="filterGames('puzzle',this)">
-            🧩 Puzzle
-        </button>
-
-        <button
-            class="category"
-            onclick="filterGames('sports',this)">
-            ⚽ Sports
-        </button>
-
-        <button
-            class="category"
-            onclick="filterGames('racing',this)">
-            🏎️ Racing
-        </button>
-
-        <button
-            class="category"
-            onclick="filterGames('board',this)">
-            ♟️ Board
-        </button>
-
-    </div>
-
-</section>
-
-
-<section
-    class="section"
-    id="gamesSection">
-
-    <div class="sectionHead">
-
-        <h2>🔥 Real Games</h2>
-
-        <small id="gameCount">
-            20 Games
-        </small>
-
-    </div>
-
-
-    <div
-        class="games"
-        id="gamesGrid">
-
-
-        <!-- 1 -->
-
-        <div
-            class="gameCard"
-            data-title="Fireboy Watergirl 7"
-            data-category="arcade"
-            onclick="playGame(0)">
-
-            <div class="gameThumb c1">
-
-                🔥💧
-
-                <span class="badge">
-                    2 PLAYER
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Fireboy & Watergirl 7
-                </h3>
-
-                <p>
-                    Cooperative platform adventure.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">ARCADE</span>
-                    <span class="tag">2 PLAYER</span>
-                </div>
-
-            </div>
-
+        <div class="logo">
+            <img src="logo.png"
+                 onerror="this.style.display='none';this.parentElement.textContent='U'">
         </div>
 
-
-        <!-- 2 -->
-
-        <div
-            class="gameCard"
-            data-title="Live 100 Days"
-            data-category="arcade"
-            onclick="playGame(1)">
-
-            <div class="gameThumb c2">
-
-                📅
-
-                <span class="badge">
-                    ADVENTURE
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Live 100 Days
-                </h3>
-
-                <p>
-                    Make choices and survive 100 days.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">ADVENTURE</span>
-                    <span class="tag">SIM</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 3 -->
-
-        <div
-            class="gameCard"
-            data-title="Sand Sort Color Puzzle"
-            data-category="puzzle"
-            onclick="playGame(2)">
-
-            <div class="gameThumb c3">
-
-                🧪
-
-                <span class="badge">
-                    PUZZLE
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Sand Sort: Color Puzzle
-                </h3>
-
-                <p>
-                    Sort the colored sand.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">PUZZLE</span>
-                    <span class="tag">CASUAL</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 4 -->
-
-        <div
-            class="gameCard"
-            data-title="Dream Mania Happy Match"
-            data-category="puzzle"
-            onclick="playGame(3)">
-
-            <div class="gameThumb c4">
-
-                💎
-
-                <span class="badge">
-                    MATCH 3
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Dream Mania Happy Match
-                </h3>
-
-                <p>
-                    Match three or more items.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">MATCH 3</span>
-                    <span class="tag">PUZZLE</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 5 -->
-
-        <div
-            class="gameCard"
-            data-title="Geometry Stars"
-            data-category="arcade"
-            onclick="playGame(4)">
-
-            <div class="gameThumb c5">
-
-                ⭐
-
-                <span class="badge">
-                    ARCADE
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Geometry Stars
-                </h3>
-
-                <p>
-                    Jump and collect stars.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">ACTION</span>
-                    <span class="tag">ARCADE</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 6 -->
-
-        <div
-            class="gameCard"
-            data-title="Hidden Horrors"
-            data-category="puzzle"
-            onclick="playGame(5)">
-
-            <div class="gameThumb c6">
-
-                🔍
-
-                <span class="badge">
-                    HIDDEN OBJECT
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Hidden Horrors
-                </h3>
-
-                <p>
-                    Find hidden objects before time runs out.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">PUZZLE</span>
-                    <span class="tag">FIND</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 7 -->
-
-        <div
-            class="gameCard"
-            data-title="Mushroom Fever Match 3"
-            data-category="puzzle"
-            onclick="playGame(6)">
-
-            <div class="gameThumb c7">
-
-                🍄
-
-                <span class="badge">
-                    MATCH 3
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Mushroom Fever Match 3
-                </h3>
-
-                <p>
-                    Colorful match-three adventure.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">PUZZLE</span>
-                    <span class="tag">MATCH 3</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 8 -->
-
-        <div
-            class="gameCard"
-            data-title="Chess Mania"
-            data-category="board"
-            onclick="playGame(7)">
-
-            <div class="gameThumb c8">
-
-                ♟️
-
-                <span class="badge">
-                    BOARD
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Chess Mania
-                </h3>
-
-                <p>
-                    Challenge yourself in hundreds of levels.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">CHESS</span>
-                    <span class="tag">BOARD</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 9 -->
-
-        <div
-            class="gameCard"
-            data-title="Solitaire Klondike Treasure Island"
-            data-category="board"
-            onclick="playGame(8)">
-
-            <div class="gameThumb c9">
-
-                🃏
-
-                <span class="badge">
-                    CARDS
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Solitaire Klondike
-                </h3>
-
-                <p>
-                    Classic solitaire adventure.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">CARDS</span>
-                    <span class="tag">CLASSIC</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 10 -->
-
-        <div
-            class="gameCard"
-            data-title="Air Hockey Cup"
-            data-category="sports"
-            onclick="playGame(9)">
-
-            <div class="gameThumb c10">
-
-                🏒
-
-                <span class="badge">
-                    SPORTS
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Air Hockey Cup
-                </h3>
-
-                <p>
-                    Play air hockey tournaments.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">SPORTS</span>
-                    <span class="tag">HOCKEY</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 11 -->
-
-        <div
-            class="gameCard"
-            data-title="Fast Tennis"
-            data-category="sports"
-            onclick="playGame(10)">
-
-            <div class="gameThumb c11">
-
-                🎾
-
-                <span class="badge">
-                    SPORTS
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Fast Tennis
-                </h3>
-
-                <p>
-                    Hit the ball and beat your opponent.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">TENNIS</span>
-                    <span class="tag">SPORTS</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 12 -->
-
-        <div
-            class="gameCard"
-            data-title="Mahjong King"
-            data-category="board"
-            onclick="playGame(11)">
-
-            <div class="gameThumb c12">
-
-                🀄
-
-                <span class="badge">
-                    BOARD
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Mahjong King
-                </h3>
-
-                <p>
-                    Match tiles and clear the board.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">MAHJONG</span>
-                    <span class="tag">BOARD</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 13 -->
-
-        <div
-            class="gameCard"
-            data-title="Sudoku Blocks"
-            data-category="puzzle"
-            onclick="playGame(12)">
-
-            <div class="gameThumb c13">
-
-                🔢
-
-                <span class="badge">
-                    PUZZLE
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Sudoku Blocks
-                </h3>
-
-                <p>
-                    Combine block puzzle and Sudoku.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">SUDOKU</span>
-                    <span class="tag">BRAIN</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 14 -->
-
-        <div
-            class="gameCard"
-            data-title="Sudoku Deluxe"
-            data-category="puzzle"
-            onclick="playGame(13)">
-
-            <div class="gameThumb c14">
-
-                🧠
-
-                <span class="badge">
-                    BRAIN
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Sudoku Deluxe
-                </h3>
-
-                <p>
-                    Easy to very hard Sudoku.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">LOGIC</span>
-                    <span class="tag">SUDOKU</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 15 -->
-
-        <div
-            class="gameCard"
-            data-title="Football Penalty Go"
-            data-category="sports"
-            onclick="playGame(14)">
-
-            <div class="gameThumb c15">
-
-                ⚽
-
-                <span class="badge">
-                    SPORTS
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Football Penalty Go
-                </h3>
-
-                <p>
-                    Score goals in penalty challenges.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">FOOTBALL</span>
-                    <span class="tag">SPORTS</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 16 -->
-
-        <div
-            class="gameCard"
-            data-title="Basketball Life 3D"
-            data-category="sports"
-            onclick="playGame(15)">
-
-            <div class="gameThumb c16">
-
-                🏀
-
-                <span class="badge">
-                    SPORTS
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Basketball Life 3D
-                </h3>
-
-                <p>
-                    Hoop challenges and trick shots.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">BASKETBALL</span>
-                    <span class="tag">3D</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 17 -->
-
-        <div
-            class="gameCard"
-            data-title="3D Soccer Champions"
-            data-category="sports"
-            onclick="playGame(16)">
-
-            <div class="gameThumb c17">
-
-                🥅
-
-                <span class="badge">
-                    FOOTBALL
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    3D Soccer Champions
-                </h3>
-
-                <p>
-                    Dribble and score in 3D football.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">3D</span>
-                    <span class="tag">SPORTS</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 18 -->
-
-        <div
-            class="gameCard"
-            data-title="Fruit Link Deluxe"
-            data-category="puzzle"
-            onclick="playGame(17)">
-
-            <div class="gameThumb c18">
-
-                🍉
-
-                <span class="badge">
-                    PUZZLE
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Fruit Link Deluxe
-                </h3>
-
-                <p>
-                    Connect matching fruits.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">MATCH</span>
-                    <span class="tag">PUZZLE</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 19 -->
-
-        <div
-            class="gameCard"
-            data-title="Garden Tales Mahjong 2"
-            data-category="board"
-            onclick="playGame(18)">
-
-            <div class="gameThumb c19">
-
-                🌻
-
-                <span class="badge">
-                    MAHJONG
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Garden Tales Mahjong 2
-                </h3>
-
-                <p>
-                    Relaxing garden-themed Mahjong.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">BOARD</span>
-                    <span class="tag">MATCH</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 20 -->
-
-        <div
-            class="gameCard"
-            data-title="Mahjong Riddles Egypt"
-            data-category="board"
-            onclick="playGame(19)">
-
-            <div class="gameThumb c20">
-
-                🏺
-
-                <span class="badge">
-                    MAHJONG
-                </span>
-
-                <span class="playIcon">
-                    ▶
-                </span>
-
-            </div>
-
-            <div class="gameInfo">
-
-                <h3>
-                    Mahjong Riddles: Egypt
-                </h3>
-
-                <p>
-                    Match tiles through ancient Egypt.
-                </p>
-
-                <div class="gameTags">
-                    <span class="tag">MAHJONG</span>
-                    <span class="tag">ADVENTURE</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-    <div
-        class="empty"
-        id="empty">
-
-        <h2>
-            😕 Game not found
-        </h2>
-
-        <p style="margin-top:8px">
-            Try another search.
+        <h1>U<span>MINGLE</span></h1>
+
+        <p>
+            Connect, chat and meet people.
+            Sign in with your Google account to continue.
         </p>
 
+        <button class="google-btn" id="googleLogin">
+            <span class="google-icon">G</span>
+            Continue with Google
+        </button>
+
+        <div id="loginError"
+             style="color:#ff667c;margin-top:15px;font-size:13px;">
+        </div>
+
     </div>
 
 </section>
 
-</main>
 
+<!-- APP -->
 
-<footer>
+<div id="app" class="hidden">
 
-    © 2026 Rishant Games
-    • Real HTML5 Games
-    • Games belong to their respective owners
+    <header class="topbar">
 
-</footer>
+        <div class="brand">
 
+            <div class="brand-logo">
+                <img src="logo.png"
+                     onerror="this.style.display='none';this.parentElement.textContent='U'">
+            </div>
 
-<!-- ================= PLAYER ================= -->
+            <div>
+                <strong>UMINGLE</strong>
+                <small>Chat • Connect • Meet</small>
+            </div>
 
-<div id="player">
-
-    <div class="playerTop">
-
-        <div
-            class="playerTitle"
-            id="playerTitle">
-            Game
         </div>
 
-        <div class="playerActions">
 
-            <button
-                class="playerBtn"
-                onclick="fullscreenGame()">
-                ⛶ Fullscreen
-            </button>
+        <div class="user-area">
 
-            <button
-                class="playerBtn"
-                onclick="closeGame()">
-                ✕ Exit
+            <span class="user-name" id="topUserName"></span>
+
+            <img id="topUserPhoto"
+                 class="user-photo"
+                 src="">
+
+            <button class="logout" id="logout">
+                Logout
             </button>
 
         </div>
 
-    </div>
+    </header>
 
 
-    <div id="frameWrap">
+    <main class="main">
 
-        <div id="loading">
+        <div class="dashboard">
 
-            <div class="spinner"></div>
 
-            <p>
-                Loading game...
-            </p>
+            <!-- SIDEBAR -->
+
+            <aside class="sidebar">
+
+                <div class="profile">
+
+                    <img id="sidePhoto" src="">
+
+                    <h3 id="sideName">User</h3>
+
+                    <p id="sideEmail"></p>
+
+                    <p class="online">
+                        ● Online
+                    </p>
+
+                </div>
+
+
+                <div class="menu">
+
+                    <button class="active"
+                            data-page="home">
+                        🏠 Home
+                    </button>
+
+                    <button data-page="match">
+                        🔀 Find Someone
+                    </button>
+
+                    <button data-page="chat">
+                        💬 Chat
+                    </button>
+
+                    <button data-page="video">
+                        📹 Video Call
+                    </button>
+
+                    <button data-page="profile">
+                        👤 Profile
+                    </button>
+
+                </div>
+
+            </aside>
+
+
+            <!-- CONTENT -->
+
+            <section class="content-card">
+
+
+                <!-- HOME -->
+
+                <div id="homePage" class="home page">
+
+                    <div class="hero">
+
+                        <h1>
+                            Meet someone <span>new.</span>
+                        </h1>
+
+                        <p>
+                            Start a conversation, find a connection
+                            and use video calling when both users
+                            are ready.
+                        </p>
+
+                        <div class="match-box">
+
+                            <button class="match-btn"
+                                    id="findBtn">
+                                🔀 Find Someone
+                            </button>
+
+                            <button class="secondary-btn"
+                                    id="chatBtn">
+                                💬 Open Chat
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stats">
+
+                        <div class="stat">
+                            <strong id="onlineCount">1</strong>
+                            <span>Online now</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>1-to-1</strong>
+                            <span>Private chat</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>HD</strong>
+                            <span>Video call</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MATCH -->
+
+                <div id="matchPage"
+                     class="page hidden">
+
+                    <div class="match-screen">
+
+                        <div class="loader"></div>
+
+                        <h2 id="matchTitle">
+                            Finding someone...
+                        </h2>
+
+                        <p id="matchText">
+                            Searching for an available user.
+                        </p>
+
+                        <button class="cancel-btn"
+                                id="cancelMatch">
+                            Cancel
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CHAT -->
+
+                <div id="chatPage"
+                     class="page hidden">
+
+                    <div class="chat-layout">
+
+
+                        <div class="chat-users">
+
+                            <h3>Chats</h3>
+
+                            <div class="chat-user">
+
+                                <img id="chatAvatar"
+                                     src="">
+
+                                <div>
+                                    <strong id="chatName">
+                                        Waiting...
+                                    </strong>
+
+                                    <small>
+                                        ● Online
+                                    </small>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="chat-area">
+
+                            <div class="chat-header">
+
+                                <div class="chat-person">
+
+                                    <img id="chatHeaderPhoto"
+                                         src="">
+
+                                    <div>
+                                        <strong id="chatHeaderName">
+                                            No connection
+                                        </strong>
+
+                                        <small style="display:block;color:#24d17e">
+                                            Online
+                                        </small>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="call-actions">
+
+                                    <button class="icon-btn"
+                                            id="chatVideo">
+                                        📹
+                                    </button>
+
+                                    <button class="icon-btn"
+                                            id="reportChat">
+                                        ⚠
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="messages"
+                                 id="messages">
+
+                                <div class="message other">
+                                    Start a conversation after
+                                    finding someone.
+                                </div>
+
+                            </div>
+
+
+                            <div class="chat-input">
+
+                                <input
+                                    id="messageInput"
+                                    placeholder="Type a message..."
+                                >
+
+                                <button class="send"
+                                        id="sendMessage">
+                                    ➤
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VIDEO -->
+
+                <div id="videoPage"
+                     class="page hidden">
+
+                    <div class="video-screen">
+
+                        <div class="video-title">
+
+                            <strong>
+                                📹 Video Call
+                            </strong>
+
+                            <span id="callStatus">
+                                Camera permission required
+                            </span>
+
+                        </div>
+
+
+                        <div class="video-grid">
+
+
+                            <div class="video-box">
+
+                                <video id="remoteVideo"
+                                       autoplay
+                                       playsinline>
+                                </video>
+
+                                <div id="remotePlaceholder"
+                                     class="video-placeholder">
+
+                                    <div style="font-size:45px">
+                                        👤
+                                    </div>
+
+                                    <span>
+                                        Waiting for other person...
+                                    </span>
+
+                                </div>
+
+                                <div class="video-label">
+                                    Other person
+                                </div>
+
+                            </div>
+
+
+                            <div class="video-box small-video">
+
+                                <video id="localVideo"
+                                       autoplay
+                                       muted
+                                       playsinline>
+                                </video>
+
+                                <div class="video-label">
+                                    You
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="video-controls">
+
+                            <button class="video-control"
+                                    id="micBtn">
+                                🎤
+                            </button>
+
+                            <button class="video-control"
+                                    id="cameraBtn">
+                                📹
+                            </button>
+
+                            <button class="video-control end-call"
+                                    id="endCall">
+                                ☎
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROFILE -->
+
+                <div id="profilePage"
+                     class="profile-page page hidden">
+
+                    <div class="profile-card">
+
+                        <h2 style="margin-bottom:25px">
+                            My Profile
+                        </h2>
+
+                        <div class="form-group">
+
+                            <label>Name</label>
+
+                            <input id="profileName">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Email</label>
+
+                            <input id="profileEmail"
+                                   disabled>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>About</label>
+
+                            <textarea
+                                id="profileAbout"
+                                placeholder="Tell something about yourself...">
+                            </textarea>
+
+                        </div>
+
+                        <button class="save-btn"
+                                id="saveProfile">
+                            Save Profile
+                        </button>
+
+                        <p id="profileMessage"
+                           style="margin-top:12px;color:#24d17e">
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
 
         </div>
 
-        <iframe
-            id="gameFrame"
-            title="Rishant Games Player"
-            allow="fullscreen; autoplay; gamepad; orientation-lock"
-            allowfullscreen
-            scrolling="no"
-            referrerpolicy="strict-origin-when-cross-origin">
-        </iframe>
+    </main>
+
+</div>
+
+
+<!-- REPORT MODAL -->
+
+<div id="reportModal"
+     class="modal hidden">
+
+    <div class="modal-card">
+
+        <h3>Report User</h3>
+
+        <p>
+            Please tell us why you are reporting this user.
+        </p>
+
+        <textarea
+            id="reportReason"
+            placeholder="Reason...">
+        </textarea>
+
+        <div class="modal-actions">
+
+            <button id="closeReport">
+                Cancel
+            </button>
+
+            <button class="danger"
+                    id="submitReport">
+                Report
+            </button>
+
+        </div>
 
     </div>
 
 </div>
 
 
-<script>
-
-/*
-=====================================================
- REAL GAME DATABASE
-=====================================================
-*/
-
-const games = [
-
-    {
-        title:"Fireboy & Watergirl 7",
-        id:"d4a3629101574bc39bd8f9d1888ca58e",
-        page:"fireboy-and-watergirl-7-and-friends"
-    },
-
-    {
-        title:"Live 100 Days",
-        id:"8a7fdc0a68ad4311a72557de8368b8cd",
-        page:"live-100-days"
-    },
-
-    {
-        title:"Sand Sort: Color Puzzle",
-        id:"abb97dc299864544ad4d776045b937f1",
-        page:"sand-sort-color-puzzle-game"
-    },
-
-    {
-        title:"Dream Mania Happy Match",
-        id:"ff639a87cfdd4eaca9b5f21b97ddd28b",
-        page:"dream-mania-happy-match"
-    },
-
-    {
-        title:"Geometry Stars",
-        id:"15e7309e294e4f78943d9e39fc0a0d85",
-        page:"geometry-stars"
-    },
-
-    {
-        title:"Hidden Horrors",
-        id:"a637f9d7958143408f9beb2b7933b54a",
-        page:"hidden-horrors"
-    },
-
-    {
-        title:"Mushroom Fever Match 3",
-        id:"cd0511c805e64eee88e6268af506d4c3",
-        page:"mushroom-fever-match-3"
-    },
-
-    {
-        title:"Chess Mania",
-        id:"ca2e9833b6e74bb0bf3c7575042473c6",
-        page:"chess-mania"
-    },
-
-    {
-        title:"Solitaire Klondike",
-        id:"cfca20a86e8349cfa78eaec18fec60d1",
-        page:"solitaire-klondike-treasure-island"
-    },
-
-    {
-        title:"Air Hockey Cup",
-        id:"d34995cabda84fc6ba06bc4eef55a539",
-        page:"air-hockey-cup"
-    },
-
-    {
-        title:"Fast Tennis",
-        id:"934fcdff6a9c41fdb33a4ae6e8ba2d62",
-        page:"fast-tennis"
-    },
-
-    {
-        title:"Mahjong King",
-        id:"32e55fa5d07b441d9750e561c594bc45",
-        page:"mahjong-king"
-    },
-
-    {
-        title:"Sudoku Blocks",
-        id:"cefdee07fa214ae0b94da28b7f9d4058",
-        page:"sudoku-blocks"
-    },
-
-    {
-        title:"Sudoku Deluxe",
-        id:"d460edf318754839a8ab30502e12ba18",
-        page:"sudoku-1"
-    },
-
-    {
-        title:"Football Penalty Go",
-        id:"f8ca5cbf53244d7ca088d5ca8a1e0fb1",
-        page:"Football-Penalty-Go"
-    },
-
-    {
-        title:"Basketball Life 3D",
-        id:"a8a2a2c5dbcd46fbbe2dfe2b7d371ee9",
-        page:"basketball-life-3d"
-    },
-
-    {
-        title:"3D Soccer Champions",
-        id:"a14422bfdbf246648318620d01defd08",
-        page:"3d-soccer-champions"
-    },
+<script type="module">
 
-    {
-        title:"Fruit Link Deluxe",
-        id:"3d4e95a1d8f5404b9f84bdf608d7f1c1",
-        page:"fruit-link-deluxe"
-    },
+/* =========================================================
+   FIREBASE
+========================================================= */
 
-    {
-        title:"Garden Tales Mahjong 2",
-        id:"090cd83a141d4968ba08fe76b167e968",
-        page:"garden-tales-mahjong-2"
-    },
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
-    {
-        title:"Mahjong Riddles: Egypt",
-        id:"818098f929e24bcbb73348bd15b01a62",
-        page:"mahjong-riddles-egypt"
-    }
 
-];
+import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    signOut,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
-/*
-=====================================================
- PLAY GAME
-=====================================================
-*/
+import {
+    getDatabase,
+    ref,
+    set,
+    push,
+    onValue,
+    update,
+    remove,
+    onDisconnect
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
 
-function playGame(index){
 
-    const game = games[index];
+/* =========================================================
+   YOUR EXISTING FIREBASE CONFIG
+========================================================= */
 
-    if(!game){
-        console.error("Game not found:", index);
-        return;
-    }
+const firebaseConfig = {
 
-    const player = document.getElementById("player");
-    const frame = document.getElementById("gameFrame");
-    const loading = document.getElementById("loading");
-    const title = document.getElementById("playerTitle");
+    apiKey:
+    "AIzaSyD7qJWxjijDXrdTiI7D14zR-ds-j46rNzc",
 
-    if(!player || !frame){
-        console.error("Game player elements not found.");
-        return;
-    }
+    authDomain:
+    "munger-mandir-room-request.firebaseapp.com",
 
-    title.textContent = game.title;
+    projectId:
+    "munger-mandir-room-request",
 
-    loading.style.display = "flex";
-    player.style.display = "flex";
-    document.body.style.overflow = "hidden";
+    storageBucket:
+    "munger-mandir-room-request.firebasestorage.app",
 
-    // Official GameDistribution iframe URL.
-    // No sandbox is used because GameDistribution games need
-    // their normal iframe permissions to run correctly.
-    const referrer = window.location.href.split("#")[0];
+    messagingSenderId:
+    "145384185034",
 
-    const src =
-        "https://html5.gamedistribution.com/" +
-        game.id +
-        "/?gd_sdk_referrer_url=" +
-        encodeURIComponent(referrer);
+    appId:
+    "1:145384185034:web:c828c0388f8bd79d79a833",
 
-    // Remove any previous handler before loading the new game.
-    frame.onload = null;
+    measurementId:
+    "G-LF2K2KFCN6",
 
-    frame.onload = function(){
-        setTimeout(function(){
-            loading.style.display = "none";
-        }, 700);
-    };
+    databaseURL:
+    "https://munger-mandir-room-request-default-rtdb.firebaseio.com"
 
-    frame.src = "about:blank";
+};
 
-    setTimeout(function(){
-        frame.src = src;
-    }, 50);
-}
 
+const app =
+    initializeApp(firebaseConfig);
 
-/*
-=====================================================
- CLOSE
-=====================================================
-*/
+const auth =
+    getAuth(app);
 
-function closeGame(){
+const db =
+    getDatabase(app);
 
-    const player=
-        document.getElementById("player");
+const provider =
+    new GoogleAuthProvider();
 
-    const frame=
-        document.getElementById("gameFrame");
 
-    frame.src="";
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-    player.style.display="none";
+const loginScreen =
+    document.getElementById("loginScreen");
 
-    document.body.style.overflow="auto";
+const appScreen =
+    document.getElementById("app");
 
-}
+const googleLogin =
+    document.getElementById("googleLogin");
 
+const loginError =
+    document.getElementById("loginError");
 
-/*
-=====================================================
- FULLSCREEN
-=====================================================
-*/
+const logout =
+    document.getElementById("logout");
 
-function fullscreenGame(){
 
-    const frame=
-        document.getElementById("gameFrame");
+/* =========================================================
+   GOOGLE LOGIN
+========================================================= */
 
-    if(frame.requestFullscreen){
+googleLogin.addEventListener(
+    "click",
+    async()=>{
 
-        frame.requestFullscreen();
+        googleLogin.disabled = true;
 
-    }
-    else if(frame.webkitRequestFullscreen){
+        googleLogin.innerHTML =
+        "Opening Google Login...";
 
-        frame.webkitRequestFullscreen();
+        try{
 
-    }
-}
-
-
-/*
-=====================================================
- SEARCH
-=====================================================
-*/
-
-function searchGames(){
-
-    const query=
-        document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase()
-        .trim();
-
-    const cards=
-        document.querySelectorAll(".gameCard");
-
-    let visible=0;
-
-    cards.forEach(card=>{
-
-        const title=
-            card
-            .dataset
-            .title
-            .toLowerCase();
-
-        if(title.includes(query)){
-
-            card.style.display="block";
-
-            visible++;
-
-        }
-        else{
-
-            card.style.display="none";
+            await signInWithPopup(
+                auth,
+                provider
+            );
 
         }
 
-    });
+        catch(error){
 
-    document.getElementById("gameCount").textContent=
-        visible+" Games";
+            console.error(error);
 
-    document.getElementById("empty").style.display=
-        visible===0 ? "block" : "none";
-
-}
-
-
-/*
-=====================================================
- CATEGORY FILTER
-=====================================================
-*/
-
-function filterGames(category,button){
-
-    const cards=
-        document.querySelectorAll(".gameCard");
-
-    let visible=0;
-
-    cards.forEach(card=>{
-
-        const cardCategory=
-            card.dataset.category;
-
-        if(
-            category==="all"
-            ||
-            cardCategory===category
-        ){
-
-            card.style.display="block";
-
-            visible++;
-
-        }
-        else{
-
-            card.style.display="none";
+            loginError.textContent =
+                firebaseError(error);
 
         }
 
-    });
+        finally{
 
-    document.getElementById("gameCount").textContent=
-        visible+" Games";
+            googleLogin.disabled = false;
 
-    document.getElementById("searchInput").value="";
-
-    document.getElementById("empty").style.display=
-        visible===0 ? "block" : "none";
-
-
-    document
-        .querySelectorAll(".category")
-        .forEach(b=>{
-            b.classList.remove("active");
-        });
-
-    if(button){
-
-        button.classList.add("active");
-
-    }
-
-}
-
-
-/*
-=====================================================
- ESC KEY
-=====================================================
-*/
-
-document.addEventListener(
-    "keydown",
-    function(e){
-
-        if(e.key==="Escape"){
-
-            const player=
-                document.getElementById("player");
-
-            if(player.style.display==="flex"){
-
-                closeGame();
-
-            }
+            googleLogin.innerHTML =
+            '<span class="google-icon">G</span> Continue with Google';
 
         }
 
     }
 );
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+logout.addEventListener(
+    "click",
+    async()=>{
+
+        try{
+
+            await signOut(auth);
+
+            stopCamera();
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+onAuthStateChanged(
+    auth,
+    user=>{
+
+        if(user){
+
+            loginScreen.classList.add(
+                "hidden"
+            );
+
+            appScreen.classList.remove(
+                "hidden"
+            );
+
+
+            const name =
+                user.displayName ||
+                "User";
+
+            const photo =
+                user.photoURL ||
+                "https://via.placeholder.com/100";
+
+
+            document.getElementById(
+                "topUserName"
+            ).textContent =
+                name;
+
+
+            document.getElementById(
+                "topUserPhoto"
+            ).src =
+                photo;
+
+
+            document.getElementById(
+                "sideName"
+            ).textContent =
+                name;
+
+
+            document.getElementById(
+                "sideEmail"
+            ).textContent =
+                user.email || "";
+
+
+            document.getElementById(
+                "sidePhoto"
+            ).src =
+                photo;
+
+
+            document.getElementById(
+                "chatAvatar"
+            ).src =
+                photo;
+
+
+            document.getElementById(
+                "chatHeaderPhoto"
+            ).src =
+                photo;
+
+
+            document.getElementById(
+                "profileName"
+            ).value =
+                name;
+
+
+            document.getElementById(
+                "profileEmail"
+            ).value =
+                user.email || "";
+
+
+            setOnline(user);
+
+        }
+
+        else{
+
+            loginScreen.classList.remove(
+                "hidden"
+            );
+
+            appScreen.classList.add(
+                "hidden"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ONLINE USER
+========================================================= */
+
+function setOnline(user){
+
+    const userRef =
+        ref(
+            db,
+            "umingleUsers/" +
+            user.uid
+        );
+
+
+    const data = {
+
+        uid:user.uid,
+
+        name:user.displayName || "User",
+
+        email:user.email || "",
+
+        photo:user.photoURL || "",
+
+        online:true,
+
+        lastSeen:Date.now()
+
+    };
+
+
+    set(
+        userRef,
+        data
+    );
+
+
+    onDisconnect(userRef)
+    .update({
+
+        online:false,
+
+        lastSeen:Date.now()
+
+    });
+
+
+    const usersRef =
+        ref(db,"umingleUsers");
+
+
+    onValue(
+        usersRef,
+        snapshot=>{
+
+            let count=0;
+
+            snapshot.forEach(
+                child=>{
+
+                    if(
+                        child.val().online === true
+                    ){
+                        count++;
+                    }
+
+                }
+            );
+
+            document.getElementById(
+                "onlineCount"
+            ).textContent =
+                count;
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+const pages = {
+
+    home:
+    document.getElementById("homePage"),
+
+    match:
+    document.getElementById("matchPage"),
+
+    chat:
+    document.getElementById("chatPage"),
+
+    video:
+    document.getElementById("videoPage"),
+
+    profile:
+    document.getElementById("profilePage")
+
+};
+
+
+function showPage(name){
+
+    Object.values(pages)
+    .forEach(
+        page=>{
+            page.classList.add("hidden");
+        }
+    );
+
+
+    pages[name]
+    .classList.remove("hidden");
+
+
+    document.querySelectorAll(
+        ".menu button"
+    )
+    .forEach(
+        button=>{
+            button.classList.toggle(
+                "active",
+                button.dataset.page === name
+            );
+        }
+    );
+
+}
+
+
+document.querySelectorAll(
+    ".menu button"
+)
+.forEach(
+    button=>{
+
+        button.addEventListener(
+            "click",
+            ()=>{
+
+                showPage(
+                    button.dataset.page
+                );
+
+            }
+        );
+
+    }
+);
+
+
+document.getElementById(
+    "findBtn"
+).addEventListener(
+    "click",
+    ()=>{
+
+        showPage("match");
+
+        startMatching();
+
+    }
+);
+
+
+document.getElementById(
+    "chatBtn"
+).addEventListener(
+    "click",
+    ()=>{
+
+        showPage("chat");
+
+    }
+);
+
+
+/* =========================================================
+   RANDOM MATCHING
+========================================================= */
+
+let matchingRef = null;
+
+let matchedUser = null;
+
+
+async function startMatching(){
+
+    const user =
+        auth.currentUser;
+
+    if(!user) return;
+
+
+    document.getElementById(
+        "matchTitle"
+    ).textContent =
+        "Finding someone...";
+
+
+    document.getElementById(
+        "matchText"
+    ).textContent =
+        "Searching for an available user.";
+
+
+    const usersRef =
+        ref(
+            db,
+            "umingleUsers"
+        );
+
+
+    onValue(
+        usersRef,
+        snapshot=>{
+
+            if(matchedUser) return;
+
+            let candidate=null;
+
+            snapshot.forEach(
+                child=>{
+
+                    const u =
+                        child.val();
+
+                    if(
+                        !candidate &&
+                        u.uid !== user.uid &&
+                        u.online === true
+                    ){
+
+                        candidate=u;
+
+                    }
+
+                }
+            );
+
+
+            if(candidate){
+
+                matchedUser =
+                    candidate;
+
+                openMatchedUser(
+                    candidate
+                );
+
+            }
+
+        },
+        {
+            onlyOnce:true
+        }
+    );
+
+
+    /*
+      Demo fallback.
+
+      If no other online user is available,
+      the interface remains in searching state.
+    */
+
+}
+
+
+function openMatchedUser(user){
+
+    document.getElementById(
+        "matchTitle"
+    ).textContent =
+        "You found someone!";
+
+
+    document.getElementById(
+        "matchText"
+    ).textContent =
+        user.name +
+        " is online.";
+
+
+    document.getElementById(
+        "chatName"
+    ).textContent =
+        user.name;
+
+
+    document.getElementById(
+        "chatHeaderName"
+    ).textContent =
+        user.name;
+
+
+    document.getElementById(
+        "chatAvatar"
+    ).src =
+        user.photo ||
+        "https://via.placeholder.com/100";
+
+
+    document.getElementById(
+        "chatHeaderPhoto"
+    ).src =
+        user.photo ||
+        "https://via.placeholder.com/100";
+
+
+    setTimeout(
+        ()=>{
+
+            showPage("chat");
+
+        },
+        900
+    );
+
+}
+
+
+document.getElementById(
+    "cancelMatch"
+).addEventListener(
+    "click",
+    ()=>{
+
+        matchedUser=null;
+
+        showPage("home");
+
+    }
+);
+
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+let chatRef=null;
+
+
+document.getElementById(
+    "sendMessage"
+).addEventListener(
+    "click",
+    sendMessage
+);
+
+
+document.getElementById(
+    "messageInput"
+).addEventListener(
+    "keydown",
+    event=>{
+
+        if(event.key==="Enter"){
+
+            event.preventDefault();
+
+            sendMessage();
+
+        }
+
+    }
+);
+
+
+async function sendMessage(){
+
+    const input =
+        document.getElementById(
+            "messageInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text) return;
+
+
+    const user =
+        auth.currentUser;
+
+
+    if(!user) return;
+
+
+    const receiver =
+        matchedUser?.uid ||
+        "demo";
+
+
+    const path =
+        "umingleChats/" +
+        [user.uid,receiver]
+        .sort()
+        .join("_");
+
+
+    const messagesRef =
+        ref(
+            db,
+            path
+        );
+
+
+    await push(
+        messagesRef,
+        {
+
+            sender:user.uid,
+
+            senderName:
+                user.displayName ||
+                "User",
+
+            text:text,
+
+            time:Date.now()
+
+        }
+    );
+
+
+    input.value="";
+
+
+    renderMessage(
+        text,
+        true
+    );
+
+}
+
+
+function renderMessage(
+    text,
+    mine
+){
+
+    const container =
+        document.getElementById(
+            "messages"
+        );
+
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.className =
+        "message " +
+        (mine ? "me":"other");
+
+
+    div.textContent =
+        text;
+
+
+    container.appendChild(
+        div
+    );
+
+
+    container.scrollTop =
+        container.scrollHeight;
+
+}
+
+
+/* =========================================================
+   VIDEO CALL
+========================================================= */
+
+let localStream=null;
+
+let peerConnection=null;
+
+let micEnabled=true;
+
+let cameraEnabled=true;
+
+
+const rtcConfig = {
+
+    iceServers:[
+        {
+            urls:
+            "stun:stun.l.google.com:19302"
+        }
+    ]
+
+};
+
+
+async function startCamera(){
+
+    try{
+
+        localStream =
+            await navigator.mediaDevices
+            .getUserMedia({
+
+                video:true,
+
+                audio:true
+
+            });
+
+
+        document.getElementById(
+            "localVideo"
+        ).srcObject =
+            localStream;
+
+
+        document.getElementById(
+            "callStatus"
+        ).textContent =
+            "Camera and microphone active";
+
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        document.getElementById(
+            "callStatus"
+        ).textContent =
+            "Camera/microphone permission denied.";
+
+    }
+
+}
+
+
+document.getElementById(
+    "chatVideo"
+).addEventListener(
+    "click",
+    async()=>{
+
+        showPage("video");
+
+        await startCamera();
+
+    }
+);
+
+
+document.getElementById(
+    "endCall"
+).addEventListener(
+    "click",
+    ()=>{
+
+        stopCamera();
+
+        showPage("chat");
+
+    }
+);
+
+
+function stopCamera(){
+
+    if(localStream){
+
+        localStream
+        .getTracks()
+        .forEach(
+            track=>{
+                track.stop();
+            }
+        );
+
+        localStream=null;
+
+    }
+
+
+    document.getElementById(
+        "localVideo"
+    ).srcObject=null;
+
+}
+
+
+document.getElementById(
+    "micBtn"
+).addEventListener(
+    "click",
+    ()=>{
+
+        if(!localStream) return;
+
+
+        micEnabled =
+            !micEnabled;
+
+
+        localStream
+        .getAudioTracks()
+        .forEach(
+            track=>{
+                track.enabled =
+                    micEnabled;
+            }
+        );
+
+
+        document.getElementById(
+            "micBtn"
+        ).textContent =
+            micEnabled ? "🎤":"🔇";
+
+    }
+);
+
+
+document.getElementById(
+    "cameraBtn"
+).addEventListener(
+    "click",
+    ()=>{
+
+        if(!localStream) return;
+
+
+        cameraEnabled =
+            !cameraEnabled;
+
+
+        localStream
+        .getVideoTracks()
+        .forEach(
+            track=>{
+                track.enabled =
+                    cameraEnabled;
+            }
+        );
+
+
+        document.getElementById(
+            "cameraBtn"
+        ).textContent =
+            cameraEnabled ? "📹":"🚫";
+
+    }
+);
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+document.getElementById(
+    "saveProfile"
+).addEventListener(
+    "click",
+    async()=>{
+
+        const user =
+            auth.currentUser;
+
+        if(!user) return;
+
+
+        const name =
+            document.getElementById(
+                "profileName"
+            ).value.trim();
+
+
+        const about =
+            document.getElementById(
+                "profileAbout"
+            ).value.trim();
+
+
+        await update(
+            ref(
+                db,
+                "umingleUsers/" +
+                user.uid
+            ),
+            {
+
+                name:name,
+
+                about:about
+
+            }
+        );
+
+
+        document.getElementById(
+            "sideName"
+        ).textContent =
+            name;
+
+
+        document.getElementById(
+            "topUserName"
+        ).textContent =
+            name;
+
+
+        document.getElementById(
+            "profileMessage"
+        ).textContent =
+            "Profile saved.";
+
+    }
+);
+
+
+/* =========================================================
+   REPORT
+========================================================= */
+
+const reportModal =
+    document.getElementById(
+        "reportModal"
+    );
+
+
+document.getElementById(
+    "reportChat"
+).addEventListener(
+    "click",
+    ()=>{
+
+        reportModal.classList.remove(
+            "hidden"
+        );
+
+    }
+);
+
+
+document.getElementById(
+    "closeReport"
+).addEventListener(
+    "click",
+    ()=>{
+
+        reportModal.classList.add(
+            "hidden"
+        );
+
+    }
+);
+
+
+document.getElementById(
+    "submitReport"
+).addEventListener(
+    "click",
+    async()=>{
+
+        const user =
+            auth.currentUser;
+
+        if(!user) return;
+
+
+        const reason =
+            document.getElementById(
+                "reportReason"
+            ).value.trim();
+
+
+        if(!reason){
+
+            alert(
+                "Please enter a reason."
+            );
+
+            return;
+
+        }
+
+
+        await push(
+            ref(
+                db,
+                "umingleReports"
+            ),
+            {
+
+                reporterUid:user.uid,
+
+                reporterEmail:
+                    user.email || "",
+
+                reportedUid:
+                    matchedUser?.uid ||
+                    "unknown",
+
+                reason:reason,
+
+                createdAt:Date.now(),
+
+                status:"pending"
+
+            }
+        );
+
+
+        document.getElementById(
+            "reportReason"
+        ).value="";
+
+
+        reportModal.classList.add(
+            "hidden"
+        );
+
+
+        alert(
+            "Report submitted."
+        );
+
+    }
+);
+
+
+/* =========================================================
+   FIREBASE ERROR
+========================================================= */
+
+function firebaseError(error){
+
+    if(!error) return "Something went wrong.";
+
+    if(
+        error.code ===
+        "auth/popup-blocked"
+    ){
+
+        return "Google Login popup blocked hai. Browser popup allow karo.";
+
+    }
+
+    if(
+        error.code ===
+        "auth/popup-closed-by-user"
+    ){
+
+        return "Google Login window close kar di gayi.";
+
+    }
+
+    if(
+        error.code ===
+        "auth/unauthorized-domain"
+    ){
+
+        return "Firebase Authentication mein is website ka domain authorize karo.";
+
+    }
+
+    if(
+        error.code ===
+        "auth/operation-not-allowed"
+    ){
+
+        return "Firebase Console mein Google Sign-In enable karo.";
+
+    }
+
+    return error.message ||
+        "Login failed.";
+
+}
 
 </script>
 
