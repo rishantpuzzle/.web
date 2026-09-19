@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,517 +7,205 @@
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
 <title>RISHANT OMEGLE— Chat & Video</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
 :root{--bg:#070b16;--panel:#101729;--border:#293550;--text:#f5f7ff;--muted:#8994ad;--primary:#7659f7;--green:#24d17e;--red:#ed4d64}
 body{min-height:100vh;background:radial-gradient(circle at 10% 0,#202b59,transparent 35%),radial-gradient(circle at 100% 100%,#301552,transparent 35%),var(--bg);color:var(--text)}
 button{cursor:pointer}.hidden{display:none!important}
+
 #loginScreen{min-height:100vh;display:grid;place-items:center;padding:20px}
 .login{width:min(430px,100%);background:#101729f2;border:1px solid var(--border);border-radius:26px;padding:40px 28px;text-align:center;box-shadow:0 30px 80px #0008}
 .logo{width:76px;height:76px;border-radius:22px;margin:0 auto 18px;background:linear-gradient(135deg,#7659f7,#aa86ff);display:grid;place-items:center;font-size:30px;font-weight:900}
 .login h1{font-size:34px}.login h1 span{color:#9a84ff}.login p{color:var(--muted);line-height:1.6;margin:10px 0 25px}
 .google{width:100%;padding:14px;border:0;border-radius:11px;background:#fff;color:#202124;font-weight:800;font-size:15px}
 #error{color:#ff7285;font-size:13px;margin-top:12px}
+
 .top{height:70px;border-bottom:1px solid var(--border);background:#070b16dd;backdrop-filter:blur(16px);display:flex;justify-content:space-between;align-items:center;padding:0 20px;position:sticky;top:0;z-index:5}
 .brand{display:flex;align-items:center;gap:10px}.brand b{font-size:19px}.brand small{display:block;color:var(--muted);font-size:11px}
 .user{display:flex;align-items:center;gap:10px}.user img,.avatar{width:38px;height:38px;border-radius:50%;object-fit:cover}.logout,.ghost{background:#151e32;border:1px solid var(--border);color:#fff;border-radius:9px;padding:9px 13px}
+
 .wrap{max-width:1200px;margin:auto;padding:22px}.layout{display:grid;grid-template-columns:250px 1fr;gap:18px}
-.side,.card{background:#101729e8;border:1px solid var(--border);border-radius:18px}.side{padding:16px}.sideProfile{text-align:center;padding:10px 0 18px;border-bottom:1px solid var(--border)}.sideProfile img{width:70px;height:70px;border-radius:50%;object-fit:cover}.sideProfile h3{margin-top:8px}.sideProfile p{color:var(--muted);font-size:12px;margin-top:4px}
+.side,.card{background:#101729e8;border:1px solid var(--border);border-radius:18px}.side{padding:16px}
+.sideProfile{text-align:center;padding:10px 0 18px;border-bottom:1px solid var(--border)}
+.sideProfile img{width:70px;height:70px;border-radius:50%;object-fit:cover}.sideProfile h3{margin-top:8px}.sideProfile p{color:var(--muted);font-size:12px;margin-top:4px}
 .menu{padding-top:14px}.menu button{width:100%;border:0;background:transparent;color:#bfc8da;text-align:left;padding:12px;border-radius:9px;margin-bottom:4px}.menu button.active,.menu button:hover{background:#1b2540;color:#fff}
-.card{min-height:620px;overflow:hidden}.page{height:100%}.home{padding:30px}.hero{padding:34px;border-radius:18px;border:1px solid #33405d;background:linear-gradient(135deg,#171f3b,#11172b)}.hero h1{font-size:36px}.hero h1 span{color:#9880ff}.hero p{color:#aab4c8;max-width:680px;line-height:1.6;margin:10px 0 24px}.actions{display:flex;gap:12px;flex-wrap:wrap}.primary,.secondary{padding:15px 20px;border-radius:11px;font-weight:800;font-size:15px}.primary{border:0;background:linear-gradient(135deg,#7d61ff,#563be7);color:#fff}.secondary{border:1px solid var(--border);background:#151e32;color:#fff}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:15px}.stat{background:#121b2e;border:1px solid var(--border);border-radius:14px;padding:18px}.stat b{font-size:22px;display:block}.stat span{font-size:12px;color:var(--muted)}
-.match{min-height:620px;padding:28px;text-align:center}.match h2{font-size:27px}.match p{color:var(--muted);margin:8px auto 18px;max-width:650px}.userList{max-width:600px;margin:auto}.personRow{display:flex;align-items:center;gap:10px;background:#151e32;border:1px solid var(--border);border-radius:12px;padding:11px;margin:8px 0}.personRow .grow{flex:1;text-align:left}.personRow small{display:block;color:var(--green);margin-top:3px}.personRow button{padding:9px 12px}
-.chat{height:620px;display:grid;grid-template-columns:230px 1fr}.chatList{border-right:1px solid var(--border);padding:14px}.contact{padding:12px;background:#151e32;border-radius:10px;display:flex;gap:10px;align-items:center}.contact small{display:block;color:var(--green);margin-top:3px}
-.chatMain{display:flex;flex-direction:column;min-width:0}.chatHead{padding:13px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}.person{display:flex;align-items:center;gap:10px}.callbtn,.reportbtn{border:1px solid var(--border);background:#151e32;color:#fff;border-radius:9px;padding:10px 12px}.headActions{display:flex;gap:7px}
-.messages{flex:1;overflow:auto;padding:18px}.msg{max-width:72%;padding:10px 13px;border-radius:14px;margin-bottom:9px;font-size:14px;line-height:1.4;white-space:pre-wrap}.msg.me{background:#684ef0;margin-left:auto;border-bottom-right-radius:4px}.msg.other{background:#202b44;border-bottom-left-radius:4px}
+
+.card{min-height:620px;overflow:hidden}.page{height:100%}.home{padding:30px}
+.hero{padding:34px;border-radius:18px;border:1px solid #33405d;background:linear-gradient(135deg,#171f3b,#11172b)}
+.hero h1{font-size:36px}.hero h1 span{color:#9880ff}.hero p{color:#aab4c8;max-width:680px;line-height:1.6;margin:10px 0 24px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}.primary,.secondary{padding:15px 20px;border-radius:11px;font-weight:800;font-size:15px}
+.primary{border:0;background:linear-gradient(135deg,#7d61ff,#563be7);color:#fff}.secondary{border:1px solid var(--border);background:#151e32;color:#fff}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:15px}
+.stat{background:#121b2e;border:1px solid var(--border);border-radius:14px;padding:18px}.stat b{font-size:22px;display:block}.stat span{font-size:12px;color:var(--muted)}
+
+.match{min-height:620px;padding:28px;text-align:center}.match h2{font-size:27px}.match p{color:var(--muted);margin:8px auto 18px;max-width:650px}.userList{max-width:600px;margin:auto}
+.personRow{display:flex;align-items:center;gap:10px;background:#151e32;border:1px solid var(--border);border-radius:12px;padding:11px;margin:8px 0}
+.personRow .grow{flex:1;text-align:left}.personRow small{display:block;color:var(--green);margin-top:3px}.personRow button{padding:9px 12px}
+
+.chat{height:620px;display:grid;grid-template-columns:230px 1fr}.chatList{border-right:1px solid var(--border);padding:14px}
+.contact{padding:12px;background:#151e32;border-radius:10px;display:flex;gap:10px;align-items:center}.contact small{display:block;color:var(--green);margin-top:3px}
+.chatMain{display:flex;flex-direction:column;min-width:0}.chatHead{padding:13px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.person{display:flex;align-items:center;gap:10px}.callbtn,.reportbtn{border:1px solid var(--border);background:#151e32;color:#fff;border-radius:9px;padding:10px 12px}.headActions{display:flex;gap:7px}
+.messages{flex:1;overflow:auto;padding:18px}.msg{max-width:72%;padding:10px 13px;border-radius:14px;margin-bottom:9px;font-size:14px;line-height:1.4;white-space:pre-wrap}
+.msg.me{background:#684ef0;margin-left:auto;border-bottom-right-radius:4px}.msg.other{background:#202b44;border-bottom-left-radius:4px}
 .inputbar{border-top:1px solid var(--border);padding:12px;display:flex;gap:8px}.inputbar input{flex:1;background:#0d1425;color:#fff;border:1px solid var(--border);border-radius:9px;padding:12px;outline:none}.send{width:48px;border:0;border-radius:9px;background:#7659f7;color:#fff}
-.video{min-height:620px;padding:16px;background:#050811}.videoTop{display:flex;justify-content:space-between;margin-bottom:12px}.videoTop span{font-size:12px;color:var(--muted)}.videos{height:470px;display:grid;grid-template-columns:1fr 260px;gap:10px}.vbox{position:relative;background:#0c1220;border:1px solid var(--border);border-radius:14px;overflow:hidden}.vbox video{width:100%;height:100%;object-fit:cover;background:#080c15}.label{position:absolute;left:10px;bottom:10px;background:#0009;padding:6px 9px;border-radius:7px;font-size:11px}.videoControls{display:flex;justify-content:center;gap:10px;padding-top:14px}.vbtn{width:48px;height:48px;border-radius:50%;border:1px solid var(--border);background:#161e31;color:#fff}.end{background:var(--red);border:0}
-.profilePage{padding:28px;max-width:620px}.field{margin:0 0 15px}.field label{display:block;color:#aab4c8;font-size:12px;margin-bottom:6px}.field input,.field textarea{width:100%;background:#0d1425;color:#fff;border:1px solid var(--border);border-radius:9px;padding:12px;outline:none}.field textarea{height:100px;resize:vertical}.save{border:0;background:#7659f7;color:#fff;padding:12px 18px;border-radius:9px;font-weight:800}
-.modal{position:fixed;inset:0;background:#000b;display:grid;place-items:center;padding:20px;z-index:20}.modalBox{width:min(420px,100%);background:#121a2d;border:1px solid var(--border);border-radius:16px;padding:22px}.modalBox p{color:var(--muted);font-size:13px;line-height:1.5;margin:8px 0 15px}.modalBox textarea{width:100%;height:100px;background:#0b1120;color:#fff;border:1px solid var(--border);border-radius:9px;padding:10px}.modalActions{display:flex;gap:8px;margin-top:12px}.modalActions button{flex:1;padding:11px;border-radius:9px;border:1px solid var(--border);background:#182137;color:#fff}.modalActions .danger{background:var(--red);border:0}
+
+.video{min-height:620px;padding:16px;background:#050811}.videoTop{display:flex;justify-content:space-between;margin-bottom:12px}.videoTop span{font-size:12px;color:var(--muted)}
+.videos{height:470px;display:grid;grid-template-columns:1fr 260px;gap:10px}.vbox{position:relative;background:#0c1220;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.vbox video{width:100%;height:100%;object-fit:cover;background:#080c15}.label{position:absolute;left:10px;bottom:10px;background:#0009;padding:6px 9px;border-radius:7px;font-size:11px}
+.videoControls{display:flex;justify-content:center;gap:10px;padding-top:14px}.vbtn{width:48px;height:48px;border-radius:50%;border:1px solid var(--border);background:#161e31;color:#fff}.end{background:var(--red);border:0}
+
+.profilePage{padding:28px;max-width:620px}.field{margin:0 0 15px}.field label{display:block;color:#aab4c8;font-size:12px;margin-bottom:6px}
+.field input,.field textarea{width:100%;background:#0d1425;color:#fff;border:1px solid var(--border);border-radius:9px;padding:12px;outline:none}
+.field textarea{height:100px;resize:vertical}.save{border:0;background:#7659f7;color:#fff;padding:12px 18px;border-radius:9px;font-weight:800}
+
+.modal{position:fixed;inset:0;background:#000b;display:grid;place-items:center;padding:20px;z-index:20}
+.modalBox{width:min(420px,100%);background:#121a2d;border:1px solid var(--border);border-radius:16px;padding:22px}
+.modalBox p{color:var(--muted);font-size:13px;line-height:1.5;margin:8px 0 15px}.modalBox textarea{width:100%;height:100px;background:#0b1120;color:#fff;border:1px solid var(--border);border-radius:9px;padding:10px}
+.modalActions{display:flex;gap:8px;margin-top:12px}.modalActions button{flex:1;padding:11px;border-radius:9px;border:1px solid var(--border);background:#182137;color:#fff}.modalActions .danger{background:var(--red);border:0}
 .callModal{text-align:center}.callModal .caller{display:flex;justify-content:center;align-items:center;gap:10px;margin:18px 0}.accept{background:#24a96b!important}.decline{background:#d9455c!important}
-@media(max-width:820px){.layout{grid-template-columns:1fr}.side{display:none}.videos{grid-template-columns:1fr}.videos .small{display:none}.stats{grid-template-columns:1fr}.chat{grid-template-columns:1fr}.chatList{display:none}.home{padding:18px}.hero h1{font-size:29px}.top{padding:0 12px}}
 
 /* =========================================================
    MOBILE RESPONSIVE + LOGO
 ========================================================= */
-.logo{overflow:hidden}
-.logo img{width:100%;height:100%;object-fit:cover;display:block}
-.brandLogo{background:transparent}
-
+.logo{overflow:hidden}.logo img{width:100%;height:100%;object-fit:cover;display:block}.brandLogo{background:transparent}
 html,body{width:100%;max-width:100%;overflow-x:hidden}
 body{-webkit-text-size-adjust:100%;overscroll-behavior-x:none}
 button,input,textarea,select{font-size:16px;max-width:100%}
 img,video{max-width:100%}
 
-@media (max-width: 760px){
-    #loginScreen{
-        min-height:100svh;
-        padding:14px;
-    }
-
-    .login{
-        width:100%;
-        max-width:430px;
-        padding:28px 18px;
-        border-radius:20px;
-    }
-
-    .login .logo{
-        width:68px;
-        height:68px;
-        border-radius:18px;
-        margin-bottom:14px;
-    }
-
-    .login h1{font-size:29px}
-    .login p{font-size:14px;margin:9px 0 20px}
-
-    .top{
-        height:62px;
-        padding:0 10px;
-        gap:8px;
-    }
-
-    .brand{gap:7px;min-width:0}
-    .brand b{font-size:16px}
-    .brand small{font-size:9px}
-    .brand .logo{width:38px!important;height:38px!important;border-radius:10px!important}
-
-    .user{
-        gap:6px;
-        min-width:0;
-    }
-
-    #topName{
-        display:none;
-    }
-
-    .user img,.avatar{
-        width:34px;
-        height:34px;
-        flex:0 0 34px;
-    }
-
-    .logout{
-        padding:8px 9px;
-        font-size:13px;
-    }
-
-    .wrap{
-        width:100%;
-        max-width:none;
-        margin:0;
-        padding:10px;
-    }
-
-    .layout{
-        display:block;
-        width:100%;
-    }
-
-    .side{
-        position:fixed;
-        left:0;
-        right:0;
-        bottom:0;
-        z-index:20;
-        height:auto;
-        padding:5px 6px calc(5px + env(safe-area-inset-bottom));
-        border-radius:16px 16px 0 0;
-        border-left:0;
-        border-right:0;
-        border-bottom:0;
-        background:#0b1120f7;
-        backdrop-filter:blur(18px);
-    }
-
-    .sideProfile{
-        display:none;
-    }
-
-    .menu{
-        padding:0;
-        display:grid;
-        grid-template-columns:repeat(5,1fr);
-        gap:3px;
-    }
-
-    .menu button{
-        margin:0;
-        padding:8px 2px;
-        min-height:50px;
-        text-align:center;
-        border-radius:10px;
-        font-size:11px;
-        line-height:1.2;
-        white-space:normal;
-    }
-
-    .card{
-        width:100%;
-        min-height:calc(100svh - 82px);
-        border-radius:14px;
-        margin-bottom:74px;
-    }
-
-    .home{
-        padding:14px;
-    }
-
-    .hero{
-        padding:20px 16px;
-        border-radius:14px;
-    }
-
-    .hero h1{
-        font-size:28px;
-        line-height:1.15;
-    }
-
-    .hero p{
-        font-size:14px;
-        line-height:1.5;
-        margin:9px 0 18px;
-    }
-
-    .actions{
-        display:grid;
-        grid-template-columns:1fr;
-        gap:9px;
-    }
-
-    .primary,.secondary{
-        width:100%;
-        padding:13px 15px;
-        font-size:14px;
-    }
-
-    .stats{
-        grid-template-columns:1fr;
-        gap:8px;
-        margin-top:10px;
-    }
-
-    .stat{
-        padding:13px;
-    }
-
-    .stat b{font-size:20px}
-
-    .match{
-        min-height:calc(100svh - 82px);
-        padding:18px 12px;
-    }
-
-    .match h2{font-size:23px}
-    .match p{font-size:13px;line-height:1.45}
-
-    .userList{
-        width:100%;
-    }
-
-    .personRow{
-        width:100%;
-        padding:9px;
-        gap:7px;
-    }
-
-    .personRow .avatar{
-        width:38px;
-        height:38px;
-    }
-
-    .personRow .grow{
-        min-width:0;
-        overflow:hidden;
-    }
-
-    .personRow .grow strong,
-    .personRow .grow small{
-        overflow:hidden;
-        text-overflow:ellipsis;
-        white-space:nowrap;
-    }
-
-    .personRow button{
-        padding:8px 9px;
-        font-size:13px;
-        flex:0 0 auto;
-    }
-
-    .chat{
-        height:calc(100svh - 82px);
-        min-height:0;
-        display:flex;
-        flex-direction:column;
-    }
-
-    .chatList{
-        display:none;
-    }
-
-    .chatMain{
-        min-height:calc(100svh - 82px);
-    }
-
-    .chatHead{
-        padding:10px;
-        gap:7px;
-    }
-
-    .chatHead .person{
-        min-width:0;
-        flex:1;
-    }
-
-    .chatHead .person > div{
-        min-width:0;
-    }
-
-    .chatHead .person strong{
-        display:block;
-        overflow:hidden;
-        text-overflow:ellipsis;
-        white-space:nowrap;
-        max-width:130px;
-    }
-
-    .headActions{
-        flex:0 0 auto;
-    }
-
-    .callbtn,.reportbtn{
-        padding:8px 9px;
-        font-size:12px;
-    }
-
-    .messages{
-        padding:12px 9px;
-    }
-
-    .msg{
-        max-width:86%;
-        font-size:14px;
-        padding:9px 11px;
-    }
-
-    .inputbar{
-        padding:8px;
-        gap:6px;
-        padding-bottom:calc(8px + env(safe-area-inset-bottom));
-    }
-
-    .inputbar input,
-    .inputbar textarea{
-        min-width:0;
-        font-size:16px;
-    }
-
-    .inputbar button{
-        flex:0 0 auto;
-        padding:10px 12px;
-    }
-
-    /* Video/call area */
-    .videoGrid,
-    .callGrid{
-        display:grid!important;
-        grid-template-columns:1fr!important;
-        gap:8px!important;
-    }
-
-    video{
-        width:100%!important;
-        max-height:46svh!important;
-        object-fit:cover;
-        border-radius:12px;
-    }
-
-    /* Profile and generic cards */
-    .profile,
-    .page{
-        width:100%;
-        max-width:100%;
-        overflow-x:hidden;
-    }
-
-    .page h2,.page h3{
-        overflow-wrap:anywhere;
-    }
-
-    .report-modal,
-    .modal{
-        padding:12px!important;
-    }
-
-    /* Prevent long emails/UIDs/text from pushing the page wider */
-    .page *{
-        overflow-wrap:anywhere;
-    }
+@media(max-width:820px){
+.layout{grid-template-columns:1fr}.side{display:none}.videos{grid-template-columns:1fr}.videos .small{display:none}.stats{grid-template-columns:1fr}.chat{grid-template-columns:1fr}.chatList{display:none}.home{padding:18px}.hero h1{font-size:29px}.top{padding:0 12px}
 }
 
-@media (max-width: 380px){
-    .top{padding:0 7px}
-    .brand b{font-size:14px}
-    .brand small{display:none}
-    .brand .logo{width:35px!important;height:35px!important}
-    .logout{padding:7px 8px;font-size:12px}
-    .menu button{font-size:10px;min-height:47px}
-    .hero h1{font-size:25px}
-    .personRow button{padding:7px 8px;font-size:12px}
+@media (max-width:760px){
+#loginScreen{min-height:100svh;padding:14px}
+.login{width:100%;max-width:430px;padding:28px 18px;border-radius:20px}
+.login .logo{width:68px;height:68px;border-radius:18px;margin-bottom:14px}
+.login h1{font-size:29px}.login p{font-size:14px;margin:9px 0 20px}
+.top{height:62px;padding:0 10px;gap:8px}
+.brand{gap:7px;min-width:0}.brand b{font-size:16px}.brand small{font-size:9px}.brand .logo{width:38px!important;height:38px!important;border-radius:10px!important}
+.user{gap:6px;min-width:0}#topName{display:none}
+.user img,.avatar{width:34px;height:34px;flex:0 0 34px}
+.logout{padding:8px 9px;font-size:13px}
+.wrap{width:100%;max-width:none;margin:0;padding:10px}
+.layout{display:block;width:100%}
+.side{position:fixed;left:0;right:0;bottom:0;z-index:20;height:auto;padding:5px 6px calc(5px + env(safe-area-inset-bottom));border-radius:16px 16px 0 0;border-left:0;border-right:0;border-bottom:0;background:#0b1120f7;backdrop-filter:blur(18px)}
+.sideProfile{display:none}
+.menu{padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
+.menu button{margin:0;padding:8px 2px;min-height:50px;text-align:center;border-radius:10px;font-size:11px;line-height:1.2;white-space:normal}
+.card{width:100%;min-height:calc(100svh - 82px);border-radius:14px;margin-bottom:74px}
+.home{padding:14px}.hero{padding:20px 16px;border-radius:14px}.hero h1{font-size:28px;line-height:1.15}
+.hero p{font-size:14px;line-height:1.5;margin:9px 0 18px}
+.actions{display:grid;grid-template-columns:1fr;gap:9px}.primary,.secondary{width:100%;padding:13px 15px;font-size:14px}
+.stats{grid-template-columns:1fr;gap:8px;margin-top:10px}.stat{padding:13px}.stat b{font-size:20px}
+.match{min-height:calc(100svh - 82px);padding:18px 12px}.match h2{font-size:23px}.match p{font-size:13px;line-height:1.45}
+.userList{width:100%}.personRow{width:100%;padding:9px;gap:7px}.personRow .avatar{width:38px;height:38px}
+.personRow .grow{min-width:0;overflow:hidden}.personRow .grow strong,.personRow .grow small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.personRow button{padding:8px 9px;font-size:13px;flex:0 0 auto}
+.chat{height:calc(100svh - 82px);min-height:0;display:flex;flex-direction:column}.chatList{display:none}
+.chatMain{min-height:calc(100svh - 82px)}.chatHead{padding:10px;gap:7px}
+.chatHead .person{min-width:0;flex:1}.chatHead .person>div{min-width:0}
+.chatHead .person strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:130px}
+.headActions{flex:0 0 auto}.callbtn,.reportbtn{padding:8px 9px;font-size:12px}
+.messages{padding:12px 9px}.msg{max-width:86%;font-size:14px;padding:9px 11px}
+.inputbar{padding:8px;gap:6px;padding-bottom:calc(8px + env(safe-area-inset-bottom))}
+.inputbar input,.inputbar textarea{min-width:0;font-size:16px}.inputbar button{flex:0 0 auto;padding:10px 12px}
+.videoGrid,.callGrid{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}
+video{width:100%!important;max-height:46svh!important;object-fit:cover;border-radius:12px}
+.profile,.page{width:100%;max-width:100%;overflow-x:hidden}.page h2,.page h3{overflow-wrap:anywhere}
+.report-modal,.modal{padding:12px!important}.page *{overflow-wrap:anywhere}
 }
 
-@media (orientation: landscape) and (max-height: 500px) and (max-width: 900px){
-    .side{
-        left:0;
-        right:auto;
-        top:62px;
-        bottom:0;
-        width:68px;
-        height:auto;
-        border-radius:0 14px 14px 0;
-        padding:7px 5px;
-    }
-    .menu{
-        grid-template-columns:1fr;
-    }
-    .menu button{
-        min-height:48px;
-    }
-    .wrap{
-        margin-left:68px;
-        width:calc(100% - 68px);
-    }
-    .card{
-        margin-bottom:0;
-    }
+@media (max-width:380px){
+.top{padding:0 7px}.brand b{font-size:14px}.brand small{display:none}.brand .logo{width:35px!important;height:35px!important}
+.logout{padding:7px 8px;font-size:12px}.menu button{font-size:10px;min-height:47px}.hero h1{font-size:25px}.personRow button{padding:7px 8px;font-size:12px}
 }
 
+@media (orientation:landscape) and (max-height:500px) and (max-width:900px){
+.side{left:0;right:auto;top:62px;bottom:0;width:68px;height:auto;border-radius:0 14px 14px 0;padding:7px 5px}
+.menu{grid-template-columns:1fr}.menu button{min-height:48px}
+.wrap{margin-left:68px;width:calc(100% - 68px)}.card{margin-bottom:0}
+}
 
 /* =========================================================
    HANUMAN ANSH × RISHANT OMEGLE — REELS THEME
-   ========================================================= */
+========================================================= */
 :root{
-  --bg:#090604;--panel:#17100a;--border:#4b2b10;--text:#fff8ed;
-  --muted:#c7ae8c;--primary:#ff8a00;--green:#27d17f;--red:#ed4d64;
-  --saffron:#ff7a00;--gold:#ffd166;--deep:#160a03;
+--bg:#090604;--panel:#17100a;--border:#4b2b10;--text:#fff8ed;
+--muted:#c7ae8c;--primary:#ff8a00;--green:#27d17f;--red:#ed4d64;
+--saffron:#ff7a00;--gold:#ffd166;--deep:#160a03;
 }
 body{
-  background:
-    radial-gradient(circle at 12% 0,#5a2508,transparent 32%),
-    radial-gradient(circle at 100% 15%,#4a1606,transparent 30%),
-    radial-gradient(circle at 50% 100%,#321405,transparent 36%),
-    var(--bg);
+background:
+radial-gradient(circle at 12% 0,#5a2508,transparent 32%),
+radial-gradient(circle at 100% 15%,#4a1606,transparent 30%),
+radial-gradient(circle at 50% 100%,#321405,transparent 36%),
+var(--bg);
 }
 .top{background:#090604e8;border-bottom-color:#5a3516}
 .side,.card{background:#17100ae8;border-color:#4b2b10}
-.menu button{color:#d9c1a2}
-.menu button.active,.menu button:hover{background:#4a2208;color:#fff}
+.menu button{color:#d9c1a2}.menu button.active,.menu button:hover{background:#4a2208;color:#fff}
 .primary{background:linear-gradient(135deg,#ff9d21,#e85c00)}
 .secondary,.ghost,.logout,.callbtn,.reportbtn,.vbtn{background:#241307;border-color:#5a3516}
-.hero{
-  border-color:#6b3a12;
-  background:
-    linear-gradient(135deg,#351505,#1a0d06 60%,#291105);
-  box-shadow:0 20px 60px #0008;
-}
-.hero h1 span{color:#ffae3d}
-.stat{background:#211207;border-color:#4b2b10}
-.video{background:#080503}
-.vbox{background:#100a05;border-color:#4b2b10}
-.inputbar{border-top-color:#4b2b10}
-.inputbar input,.field input,.field textarea{background:#0d0804;border-color:#4b2b10}
+.hero{border-color:#6b3a12;background:linear-gradient(135deg,#351505,#1a0d06 60%,#291105);box-shadow:0 20px 60px #0008}
+.hero h1 span{color:#ffae3d}.stat{background:#211207;border-color:#4b2b10}
+.video{background:#080503}.vbox{background:#100a05;border-color:#4b2b10}
+.inputbar{border-top-color:#4b2b10}.inputbar input,.field input,.field textarea{background:#0d0804;border-color:#4b2b10}
 .send,.save{background:linear-gradient(135deg,#ff9d21,#e85c00)}
-.login{background:#17100af2;border-color:#5a3516}
-.login .google{color:#17100a}
-.brand b{color:#fff3dc}
-.brand small{color:#d0ae80}
+.login{background:#17100af2;border-color:#5a3516}.login .google{color:#17100a}
+.brand b{color:#fff3dc}.brand small{color:#d0ae80}
+
 .hanumanIntro{
-  position:fixed;inset:0;z-index:100;
-  display:grid;place-items:center;padding:20px;
-  background:
-    radial-gradient(circle at 50% 35%,#ff9b20 0,transparent 25%),
-    linear-gradient(145deg,#180803,#050302 75%);
+position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;
+background:radial-gradient(circle at 50% 35%,#ff9b20 0,transparent 25%),linear-gradient(145deg,#180803,#050302 75%);
 }
 .hanumanIntro.hideIntro{display:none}
-.introBox{
-  width:min(520px,100%);text-align:center;padding:36px 24px;
-  border:1px solid #8d4b0e;border-radius:28px;
-  background:#140a05ee;box-shadow:0 30px 100px #000c;
-}
+.introBox{width:min(520px,100%);text-align:center;padding:36px 24px;border:1px solid #8d4b0e;border-radius:28px;background:#140a05ee;box-shadow:0 30px 100px #000c}
 .introOm{font-size:28px;color:#ffd166;letter-spacing:5px}
-.hanumanMark{
-  width:132px;height:132px;border-radius:50%;margin:12px auto 18px;
-  display:grid;place-items:center;font-size:76px;
-  background:radial-gradient(circle,#ffbf4a,#d94c00);
-  border:3px solid #ffd166;box-shadow:0 0 45px #ff8a0055;
-}
-.introBox h1{font-size:36px;line-height:1.1}
-.introBox h1 span{color:#ff9d21}
+.hanumanMark{width:132px;height:132px;border-radius:50%;margin:12px auto 18px;display:grid;place-items:center;font-size:76px;background:radial-gradient(circle,#ffbf4a,#d94c00);border:3px solid #ffd166;box-shadow:0 0 45px #ff8a0055}
+.introBox h1{font-size:36px;line-height:1.1}.introBox h1 span{color:#ff9d21}
 .introBox p{color:#d7bd9b;line-height:1.6;margin:12px auto 22px;max-width:430px}
-.introBadge{
-  display:inline-block;padding:8px 14px;border-radius:999px;
-  background:#3a1a07;border:1px solid #75400e;color:#ffd166;
-  font-weight:800;font-size:12px;letter-spacing:.5px;
-}
-.introBtn{
-  margin-top:20px;width:100%;padding:14px 18px;border:0;border-radius:12px;
-  background:linear-gradient(135deg,#ffb02e,#ed6500);color:#fff;
-  font-weight:900;font-size:15px;
-}
+.introBadge{display:inline-block;padding:8px 14px;border-radius:999px;background:#3a1a07;border:1px solid #75400e;color:#ffd166;font-weight:800;font-size:12px;letter-spacing:.5px}
+.introBtn{margin-top:20px;width:100%;padding:14px 18px;border:0;border-radius:12px;background:linear-gradient(135deg,#ffb02e,#ed6500);color:#fff;font-weight:900;font-size:15px}
+
 .reelsPage{padding:0;min-height:620px;background:#070402}
-.reelsHeader{
-  position:sticky;top:0;z-index:3;padding:14px 16px;
-  display:flex;justify-content:space-between;align-items:center;
-  background:#0b0604e8;border-bottom:1px solid #4b2b10;backdrop-filter:blur(14px)
-}
+.reelsHeader{position:sticky;top:0;z-index:3;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;background:#0b0604e8;border-bottom:1px solid #4b2b10;backdrop-filter:blur(14px)}
 .reelsHeader h2{font-size:20px}.reelsHeader small{color:#d0ae80}
 .reelsLayout{display:grid;grid-template-columns:330px 1fr;gap:16px;padding:16px}
-.reelUpload{
-  align-self:start;position:sticky;top:74px;
-  padding:16px;border:1px solid #4b2b10;border-radius:16px;background:#160b05
-}
+.reelUpload{align-self:start;position:sticky;top:74px;padding:16px;border:1px solid #4b2b10;border-radius:16px;background:#160b05}
 .reelUpload h3{margin-bottom:8px}.reelUpload p{font-size:12px;color:#c7ae8c;line-height:1.5;margin-bottom:12px}
 .reelUpload input[type=file]{width:100%;color:#d9c1a2;margin:8px 0}
-.reelUpload textarea{
-  width:100%;height:75px;background:#0d0804;color:#fff;border:1px solid #4b2b10;
-  border-radius:10px;padding:10px;resize:vertical;outline:none
-}
+.reelUpload textarea{width:100%;height:75px;background:#0d0804;color:#fff;border:1px solid #4b2b10;border-radius:10px;padding:10px;resize:vertical;outline:none}
 .uploadBtn{width:100%;margin-top:10px;padding:12px;border:0;border-radius:10px;background:#ff7900;color:#fff;font-weight:900}
 .uploadProgress{height:7px;border-radius:99px;background:#281408;overflow:hidden;margin-top:10px;display:none}
 .uploadProgress i{display:block;height:100%;width:0;background:#ffd166}
 .reelsFeed{display:flex;flex-direction:column;align-items:center;gap:16px}
-.reelCard{
-  width:min(430px,100%);height:620px;position:relative;overflow:hidden;
-  border-radius:18px;border:1px solid #4b2b10;background:#000;scroll-snap-align:start;
-}
+.reelCard{width:min(430px,100%);height:620px;position:relative;overflow:hidden;border-radius:18px;border:1px solid #4b2b10;background:#000;scroll-snap-align:start}
 .reelCard video{width:100%;height:100%;object-fit:cover;background:#000}
 .reelShade{position:absolute;inset:0;background:linear-gradient(transparent 45%,#000b 100%);pointer-events:none}
 .reelInfo{position:absolute;left:14px;right:68px;bottom:14px;z-index:2}
-.reelUser{font-weight:900;margin-bottom:7px}.reelCaption{font-size:13px;line-height:1.45;color:#fff2dd}
-.reelTag{display:inline-block;margin-top:8px;color:#ffd166;font-size:11px}
+.reelUser{font-weight:900;margin-bottom:7px}.reelCaption{font-size:13px;line-height:1.45;color:#fff2dd}.reelTag{display:inline-block;margin-top:8px;color:#ffd166;font-size:11px}
 .reelActions{position:absolute;right:10px;bottom:18px;z-index:3;display:flex;flex-direction:column;gap:10px}
-.reelAction{
-  width:46px;height:46px;border-radius:50%;border:1px solid #70400f;
-  background:#120904cc;color:#fff;font-size:19px
-}
-.reelEmpty{padding:40px 18px;text-align:center;color:#c7ae8c}
-.reelEmpty b{display:block;color:#fff;font-size:18px;margin-bottom:8px}
+.reelAction{width:46px;height:46px;border-radius:50%;border:1px solid #70400f;background:#120904cc;color:#fff;font-size:19px}
+.reelEmpty{padding:40px 18px;text-align:center;color:#c7ae8c}.reelEmpty b{display:block;color:#fff;font-size:18px;margin-bottom:8px}
+
 @media(max-width:820px){
-  .reelsLayout{grid-template-columns:1fr;padding:8px}
-  .reelUpload{position:relative;top:auto}
-  .reelCard{height:calc(100svh - 145px);min-height:500px;border-radius:14px}
+.reelsLayout{grid-template-columns:1fr;padding:8px}
+.reelUpload{position:relative;top:auto}
+.reelCard{height:calc(100svh - 145px);min-height:500px;border-radius:14px}
 }
 @media(max-width:760px){
-  .menu{grid-template-columns:repeat(6,1fr)}
-  .menu button{font-size:9px;padding:7px 1px}
-  .reelsHeader{padding:12px}
-  .reelsPage{min-height:calc(100svh - 82px)}
-  .reelUpload{margin-bottom:2px}
+.menu{grid-template-columns:repeat(6,1fr)}
+.menu button{font-size:9px;padding:7px 1px}
+.reelsHeader{padding:12px}.reelsPage{min-height:calc(100svh - 82px)}
+.reelUpload{margin-bottom:2px}
 }
-
 </style>
 </head>
+
 <body>
 
 <div id="hanumanIntro" class="hanumanIntro">
@@ -530,7 +219,6 @@ body{
   </div>
 </div>
 
-
 <section id="loginScreen">
   <div class="login">
     <div class="logo"><img src="logo.png" alt="Logo"></div>
@@ -543,19 +231,42 @@ body{
 </section>
 
 <div id="app" class="hidden">
+
 <header class="top">
-  <div class="brand"><div class="logo brandLogo" style="width:42px;height:42px;border-radius:12px;font-size:18px;margin:0"><img src="logo.png" alt="Logo"></div><div><b>RISHANT × HANUMAN ANSH</b><small>Reels • Chat • Video</small></div></div>
-  <div class="user"><span id="topName"></span><img id="topPhoto"><button class="logout" id="logout">Logout</button></div>
+  <div class="brand">
+    <div class="logo brandLogo" style="width:42px;height:42px;border-radius:12px;font-size:18px;margin:0">
+      <img src="logo.png" alt="Logo">
+    </div>
+    <div>
+      <b>RISHANT × HANUMAN ANSH</b>
+      <small>Reels • Chat • Video</small>
+    </div>
+  </div>
+
+  <div class="user">
+    <span id="topName"></span>
+    <img id="topPhoto">
+    <button class="logout" id="logout">Logout</button>
+  </div>
 </header>
 
-<main class="wrap"><div class="layout">
+<main class="wrap">
+<div class="layout">
+
 <aside class="side">
-  <div class="sideProfile"><img id="sidePhoto"><h3 id="sideName"></h3><p id="sideEmail"></p><p style="color:#24d17e">● Online</p></div>
+  <div class="sideProfile">
+    <img id="sidePhoto">
+    <h3 id="sideName"></h3>
+    <p id="sideEmail"></p>
+    <p style="color:#24d17e">● Online</p>
+  </div>
+
   <div class="menu">
     <button class="active" data-page="home">🏠 Home</button>
     <button data-page="match">👥 Find People</button>
     <button data-page="chat">💬 Chat</button>
     <button data-page="video">📹 Video</button>
+    <button data-page="reels">🎬 Reels</button>
     <button data-page="profile">👤 Profile</button>
   </div>
 </aside>
@@ -566,8 +277,12 @@ body{
   <div class="hero">
     <h1>Connect <span>with Rishant × Hanuman Ansh.</span></h1>
     <p>Hanuman Ansh collaboration theme with private chat, 1-to-1 video calls and a real Instagram-style Reels upload/feed.</p>
-    <div class="actions"><button class="primary" id="findBtn">Find people</button><button class="secondary" id="chatBtn">Open chat</button></div>
+    <div class="actions">
+      <button class="primary" id="findBtn">Find people</button>
+      <button class="secondary" id="chatBtn">Open chat</button>
+    </div>
   </div>
+
   <div class="stats">
     <div class="stat"><b id="onlineCount">0</b><span>Online users</span></div>
     <div class="stat"><b>1-to-1</b><span>Private call</span></div>
@@ -575,25 +290,42 @@ body{
   </div>
 </div>
 
-
 <div id="reelsPage" class="page hidden reelsPage">
+
   <div class="reelsHeader">
-    <div><h2>🎬 Reels</h2><small>Hanuman Ansh × Rishant</small></div>
+    <div>
+      <h2>🎬 Reels</h2>
+      <small>Hanuman Ansh × Rishant</small>
+    </div>
     <button class="ghost" id="refreshReels">↻ Refresh</button>
   </div>
+
   <div class="reelsLayout">
+
     <div class="reelUpload">
       <h3>🚩 Upload a Reel</h3>
       <p>Instagram-style vertical video upload. Choose a video, add a caption, then publish it to the Reels feed.</p>
+
       <input id="reelFile" type="file" accept="video/*">
+
       <textarea id="reelCaption" maxlength="300" placeholder="Write a caption... #HanumanAnsh"></textarea>
+
       <button class="uploadBtn" id="uploadReel">⬆ Publish Reel</button>
-      <div class="uploadProgress" id="uploadProgress"><i id="uploadBar"></i></div>
+
+      <div class="uploadProgress" id="uploadProgress">
+        <i id="uploadBar"></i>
+      </div>
+
       <div id="uploadStatus" style="font-size:12px;color:#ffd166;margin-top:8px"></div>
     </div>
+
     <div id="reelsFeed" class="reelsFeed">
-      <div class="reelEmpty"><b>Loading Reels…</b>Hanuman Ansh Reels will appear here.</div>
+      <div class="reelEmpty">
+        <b>Loading Reels…</b>
+        Hanuman Ansh Reels will appear here.
+      </div>
     </div>
+
   </div>
 </div>
 
@@ -605,51 +337,160 @@ body{
 </div>
 
 <div id="chatPage" class="page hidden chat">
-  <div class="chatList"><h3 style="margin:5px 4px 14px">Connection</h3><div class="contact"><img id="contactPhoto" class="avatar"><div><b id="contactName">No person selected</b><small id="contactStatus">Select someone</small></div></div></div>
-  <div class="chatMain">
-    <div class="chatHead">
-      <div class="person"><img id="chatPhoto" class="avatar"><div><b id="chatName">No person selected</b><small style="display:block;color:#24d17e">● Ready</small></div></div>
-      <div class="headActions"><button class="reportbtn" id="reportBtn">⚠</button><button class="callbtn" id="callBtn">📹 Call</button></div>
+
+  <div class="chatList">
+    <h3 style="margin:5px 4px 14px">Connection</h3>
+
+    <div class="contact">
+      <img id="contactPhoto" class="avatar">
+      <div>
+        <b id="contactName">No person selected</b>
+        <small id="contactStatus">Select someone</small>
+      </div>
     </div>
+  </div>
+
+  <div class="chatMain">
+
+    <div class="chatHead">
+      <div class="person">
+        <img id="chatPhoto" class="avatar">
+        <div>
+          <b id="chatName">No person selected</b>
+          <small style="display:block;color:#24d17e">● Ready</small>
+        </div>
+      </div>
+
+      <div class="headActions">
+        <button class="reportbtn" id="reportBtn">⚠</button>
+        <button class="callbtn" id="callBtn">📹 Call</button>
+      </div>
+    </div>
+
     <div id="messages" class="messages"></div>
-    <div class="inputbar"><input id="messageInput" placeholder="Type a message..." maxlength="1000"><button class="send" id="send">➤</button></div>
+
+    <div class="inputbar">
+      <input id="messageInput" placeholder="Type a message..." maxlength="1000">
+      <button class="send" id="send">➤</button>
+    </div>
+
   </div>
 </div>
 
 <div id="videoPage" class="page hidden video">
-  <div class="videoTop"><b>📹 1-to-1 Video Call</b><span id="callStatus">Not connected</span></div>
-  <div class="videos"><div class="vbox"><video id="remoteVideo" autoplay playsinline></video><div class="label">Other person</div></div><div class="vbox small"><video id="localVideo" autoplay muted playsinline></video><div class="label">You</div></div></div>
-  <div class="videoControls"><button class="vbtn" id="mic">🎤</button><button class="vbtn" id="camera">📹</button><button class="vbtn end" id="endCall">☎</button></div>
+
+  <div class="videoTop">
+    <b>📹 1-to-1 Video Call</b>
+    <span id="callStatus">Not connected</span>
+  </div>
+
+  <div class="videos">
+    <div class="vbox">
+      <video id="remoteVideo" autoplay playsinline></video>
+      <div class="label">Other person</div>
+    </div>
+
+    <div class="vbox small">
+      <video id="localVideo" autoplay muted playsinline></video>
+      <div class="label">You</div>
+    </div>
+  </div>
+
+  <div class="videoControls">
+    <button class="vbtn" id="mic">🎤</button>
+    <button class="vbtn" id="camera">📹</button>
+    <button class="vbtn end" id="endCall">☎</button>
+  </div>
 </div>
 
 <div id="profilePage" class="page hidden profilePage">
+
   <h2 style="margin-bottom:22px">My Profile</h2>
-  <div class="field"><label>Name</label><input id="profileName" maxlength="80"></div>
-  <div class="field"><label>Email</label><input id="profileEmail" disabled></div>
-  <div class="field"><label>About</label><textarea id="about" maxlength="500"></textarea></div>
-  <button class="save" id="saveProfile">Save profile</button><p id="saveMsg" style="color:#24d17e;margin-top:10px"></p>
+
+  <div class="field">
+    <label>Name</label>
+    <input id="profileName" maxlength="80">
+  </div>
+
+  <div class="field">
+    <label>Email</label>
+    <input id="profileEmail" disabled>
+  </div>
+
+  <div class="field">
+    <label>About</label>
+    <textarea id="about" maxlength="500"></textarea>
+  </div>
+
+  <button class="save" id="saveProfile">Save profile</button>
+  <p id="saveMsg" style="color:#24d17e;margin-top:10px"></p>
+
 </div>
 
-</section></div></main></div>
+</section>
+</div>
+</main>
+</div>
 
 <div id="incomingModal" class="modal hidden">
   <div class="modalBox callModal">
     <h3>Incoming video call</h3>
-    <div class="caller"><img id="callerPhoto" class="avatar"><b id="callerName">Someone</b></div>
+
+    <div class="caller">
+      <img id="callerPhoto" class="avatar">
+      <b id="callerName">Someone</b>
+    </div>
+
     <p>Accept only if you know and trust the caller.</p>
-    <div class="modalActions"><button class="decline" id="declineCall">Decline</button><button class="accept" id="acceptCall">Accept</button></div>
+
+    <div class="modalActions">
+      <button class="decline" id="declineCall">Decline</button>
+      <button class="accept" id="acceptCall">Accept</button>
+    </div>
   </div>
 </div>
 
 <div id="reportModal" class="modal hidden">
- <div class="modalBox"><h3>Report user</h3><p>Use this for a genuine safety or conduct concern.</p><textarea id="reportReason" maxlength="500" placeholder="Reason..."></textarea><div class="modalActions"><button id="closeReport">Cancel</button><button class="danger" id="submitReport">Report</button></div></div>
+  <div class="modalBox">
+    <h3>Report user</h3>
+    <p>Use this for a genuine safety or conduct concern.</p>
+
+    <textarea id="reportReason" maxlength="500" placeholder="Reason..."></textarea>
+
+    <div class="modalActions">
+      <button id="closeReport">Cancel</button>
+      <button class="danger" id="submitReport">Report</button>
+    </div>
+  </div>
 </div>
 
 <script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-import {getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import {getDatabase,ref,set,get,update,push,onValue,onDisconnect,remove} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
-import {getStorage,ref as storageRef,uploadBytesResumable,getDownloadURL} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-storage.js";
+
+import {initializeApp}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+import {
+  getDatabase,
+  ref,
+  set,
+  get,
+  update,
+  push,
+  onValue,
+  onDisconnect,
+  remove
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js";
+
 
 const firebaseConfig={
  apiKey:"AIzaSyC29TMMQHfUG-UDiXgM14B8K6NVeldft6s",
@@ -660,397 +501,1527 @@ const firebaseConfig={
  messagingSenderId:"1064059813928",
  appId:"1:1064059813928:web:9dbe1561d811501edc351d"
 };
-const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getDatabase(app),storage=getStorage(app),provider=new GoogleAuthProvider();
+
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getDatabase(app);
+const provider=new GoogleAuthProvider();
+
 const $=id=>document.getElementById(id);
-let currentUser=null,selectedUser=null,unsubscribeMessages=null;
-let localStream=null,pc=null,callId=null,incomingCall=null;
-let muted=false,cameraOff=false,processedCalls=new Set();
+
+let currentUser=null;
+let selectedUser=null;
+let unsubscribeMessages=null;
+
+let localStream=null;
+let pc=null;
+let callId=null;
+let incomingCall=null;
+
+let muted=false;
+let cameraOff=false;
+let processedCalls=new Set();
+
 
 function showPage(name){
- document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));
+
+ document.querySelectorAll(".page")
+   .forEach(p=>p.classList.add("hidden"));
+
  $(name+"Page").classList.remove("hidden");
- document.querySelectorAll(".menu button").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
+
+ document.querySelectorAll(".menu button")
+   .forEach(b=>
+     b.classList.toggle(
+       "active",
+       b.dataset.page===name
+     )
+   );
 }
-function conversationId(a,b){return [a,b].sort()}
-function callStatus(t){$("callStatus").textContent=t}
+
+
+function conversationId(a,b){
+ return [a,b].sort();
+}
+
+
+function callStatus(t){
+ $("callStatus").textContent=t;
+}
+
 
 $("googleLogin").onclick=async()=>{
+
  $("error").textContent="";
- try{await signInWithPopup(auth,provider)}
- catch(e){$("error").textContent=errorText(e)}
+
+ try{
+   await signInWithPopup(auth,provider);
+ }
+ catch(e){
+   $("error").textContent=errorText(e);
+ }
+
 };
+
+
 $("logout").onclick=()=>signOut(auth);
 
+
 onAuthStateChanged(auth,async user=>{
+
  if(!user){
+
    currentUser=null;
+
    $("loginScreen").classList.remove("hidden");
    $("app").classList.add("hidden");
+
    await stopCall(false);
+
    return;
  }
+
  currentUser=user;
- $("loginScreen").classList.add("hidden");$("app").classList.remove("hidden");
- $("topName").textContent=user.displayName||"User";$("topPhoto").src=user.photoURL||"";
- $("sideName").textContent=user.displayName||"User";$("sideEmail").textContent=user.email||"";$("sidePhoto").src=user.photoURL||"";
- $("profileName").value=user.displayName||"";$("profileEmail").value=user.email||"";
- await publishPresence();await loadProfile();watchOnlineCount();watchIncomingCalls();watchReels();
+
+ $("loginScreen").classList.add("hidden");
+ $("app").classList.remove("hidden");
+
+ $("topName").textContent=user.displayName||"User";
+ $("topPhoto").src=user.photoURL||"";
+
+ $("sideName").textContent=user.displayName||"User";
+ $("sideEmail").textContent=user.email||"";
+ $("sidePhoto").src=user.photoURL||"";
+
+ $("profileName").value=user.displayName||"";
+ $("profileEmail").value=user.email||"";
+
+ await publishPresence();
+ await loadProfile();
+
+ watchOnlineCount();
+ watchIncomingCalls();
+ watchReels();
+
 });
 
+
 async function publishPresence(){
+
  const r=ref(db,"umingleUsers/"+currentUser.uid);
- await set(r,{uid:currentUser.uid,name:currentUser.displayName||"User",photo:currentUser.photoURL||"",online:true,lastSeen:{".sv":"timestamp"}});
- await onDisconnect(r).update({online:false,lastSeen:{".sv":"timestamp"}});
-}
-function watchOnlineCount(){
- onValue(ref(db,"umingleUsers"),snap=>{let n=0;snap.forEach(c=>{if(c.val()?.online)n++});$("onlineCount").textContent=n});
+
+ await set(r,{
+   uid:currentUser.uid,
+   name:currentUser.displayName||"User",
+   photo:currentUser.photoURL||"",
+   online:true,
+   lastSeen:{".sv":"timestamp"}
+ });
+
+ await onDisconnect(r).update({
+   online:false,
+   lastSeen:{".sv":"timestamp"}
+ });
+
 }
 
-document.querySelectorAll(".menu button").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
-$("findBtn").onclick=()=>{showPage("match");loadUsers()};
-$("chatBtn").onclick=()=>showPage("chat");
-$("cancelMatch").onclick=()=>showPage("home");
+
+function watchOnlineCount(){
+
+ onValue(ref(db,"umingleUsers"),snap=>{
+
+   let n=0;
+
+   snap.forEach(c=>{
+     if(c.val()?.online)n++;
+   });
+
+   $("onlineCount").textContent=n;
+
+ });
+
+}
+
+
+document.querySelectorAll(".menu button")
+.forEach(b=>
+ b.onclick=()=>showPage(b.dataset.page)
+);
+
+
+$("findBtn").onclick=()=>{
+ showPage("match");
+ loadUsers();
+};
+
+
+$("chatBtn").onclick=()=>{
+ showPage("chat");
+};
+
+
+$("cancelMatch").onclick=()=>{
+ showPage("home");
+};
+
 
 async function loadUsers(){
+
  $("userList").innerHTML="";
+
  const snap=await get(ref(db,"umingleUsers"));
+
  snap.forEach(child=>{
+
    const u=child.val();
-   if(!u||u.uid===currentUser.uid||u.online!==true)return;
-   const row=document.createElement("div");row.className="personRow";
-   const img=document.createElement("img");img.src=u.photo||"";img.className="avatar";
-   const info=document.createElement("div");info.className="grow";
-   const name=document.createElement("b");name.textContent=u.name||"User";
-   const status=document.createElement("small");status.textContent="● Online";
+
+   if(!u||u.uid===currentUser.uid||u.online!==true)
+     return;
+
+   const row=document.createElement("div");
+   row.className="personRow";
+
+   const img=document.createElement("img");
+   img.src=u.photo||"";
+   img.className="avatar";
+
+   const info=document.createElement("div");
+   info.className="grow";
+
+   const name=document.createElement("b");
+   name.textContent=u.name||"User";
+
+   const status=document.createElement("small");
+   status.textContent="● Online";
+
    info.append(name,status);
-   const btn=document.createElement("button");btn.className="primary";btn.textContent="Chat";
+
+   const btn=document.createElement("button");
+   btn.className="primary";
+   btn.textContent="Chat";
+
    btn.onclick=()=>selectUser(u);
-   row.append(img,info,btn);$("userList").appendChild(row);
+
+   row.append(img,info,btn);
+
+   $("userList").appendChild(row);
+
  });
- if(!$("userList").children.length)$("userList").innerHTML="<p style='color:#8994ad'>No other signed-in users are online.</p>";
+
+ if(!$("userList").children.length)
+   $("userList").innerHTML="<p style='color:#8994ad'>No other signed-in users are online.</p>";
+
 }
+
 
 async function selectUser(u){
+
  selectedUser=u;
- $("contactName").textContent=u.name||"User";$("contactPhoto").src=u.photo||"";
+
+ $("contactName").textContent=u.name||"User";
+ $("contactPhoto").src=u.photo||"";
  $("contactStatus").textContent=u.online?"Online":"Offline";
- $("chatName").textContent=u.name||"User";$("chatPhoto").src=u.photo||"";
- showPage("chat");subscribeMessages();
+
+ $("chatName").textContent=u.name||"User";
+ $("chatPhoto").src=u.photo||"";
+
+ showPage("chat");
+
+ subscribeMessages();
+
 }
+
 
 function subscribeMessages(){
+
  if(!selectedUser)return;
- if(unsubscribeMessages)unsubscribeMessages();
- const [a,b]=conversationId(currentUser.uid,selectedUser.uid);
- const r=ref(db,`umingleChats/${a}/${b}/messages`);
+
+ if(unsubscribeMessages)
+   unsubscribeMessages();
+
+ const [a,b]=conversationId(
+   currentUser.uid,
+   selectedUser.uid
+ );
+
+ const r=ref(
+   db,
+   `umingleChats/${a}/${b}/messages`
+ );
+
  unsubscribeMessages=onValue(r,snap=>{
+
    $("messages").innerHTML="";
+
    snap.forEach(c=>{
-     const m=c.val(),d=document.createElement("div");
-     d.className="msg "+(m.sender===currentUser.uid?"me":"other");d.textContent=m.text||"";$("messages").appendChild(d);
+
+     const m=c.val();
+
+     const d=document.createElement("div");
+
+     d.className=
+       "msg "+
+       (m.sender===currentUser.uid?"me":"other");
+
+     d.textContent=m.text||"";
+
+     $("messages").appendChild(d);
+
    });
-   $("messages").scrollTop=$("messages").scrollHeight;
+
+   $("messages").scrollTop=
+     $("messages").scrollHeight;
+
  });
+
 }
+
+
 $("send").onclick=sendMessage;
-$("messageInput").onkeydown=e=>{if(e.key==="Enter")sendMessage()};
+
+
+$("messageInput").onkeydown=e=>{
+ if(e.key==="Enter")sendMessage();
+};
+
+
 async function sendMessage(){
- if(!selectedUser)return alert("First select a person.");
- const text=$("messageInput").value.trim();if(!text)return;
- const [a,b]=conversationId(currentUser.uid,selectedUser.uid);
+
+ if(!selectedUser)
+   return alert("First select a person.");
+
+ const text=$("messageInput").value.trim();
+
+ if(!text)return;
+
+ const [a,b]=conversationId(
+   currentUser.uid,
+   selectedUser.uid
+ );
+
  const base=ref(db,`umingleChats/${a}/${b}`);
- const exists=await get(ref(db,`umingleChats/${a}/${b}/participants`));
- if(!exists.exists())await set(ref(db,`umingleChats/${a}/${b}/participants`),{[a]:true,[b]:true});
- await push(ref(db,`umingleChats/${a}/${b}/messages`),{sender:currentUser.uid,receiver:selectedUser.uid,text,createdAt:{".sv":"timestamp"}});
+
+ const exists=await get(
+   ref(db,`umingleChats/${a}/${b}/participants`)
+ );
+
+ if(!exists.exists())
+   await set(
+     ref(db,`umingleChats/${a}/${b}/participants`),
+     {[a]:true,[b]:true}
+   );
+
+ await push(
+   ref(db,`umingleChats/${a}/${b}/messages`),
+   {
+     sender:currentUser.uid,
+     receiver:selectedUser.uid,
+     text,
+     createdAt:{".sv":"timestamp"}
+   }
+ );
+
  $("messageInput").value="";
+
 }
+
 
 $("callBtn").onclick=startOutgoingCall;
-$("endCall").onclick=()=>stopCall(true);
+
+
+$("endCall").onclick=()=>{
+ stopCall(true);
+};
+
+
 $("mic").onclick=()=>{
- muted=!muted;if(localStream)localStream.getAudioTracks().forEach(t=>t.enabled=!muted);$("mic").textContent=muted?"🔇":"🎤";
+
+ muted=!muted;
+
+ if(localStream)
+   localStream
+     .getAudioTracks()
+     .forEach(t=>t.enabled=!muted);
+
+ $("mic").textContent=
+   muted?"🔇":"🎤";
+
 };
+
+
 $("camera").onclick=()=>{
- cameraOff=!cameraOff;if(localStream)localStream.getVideoTracks().forEach(t=>t.enabled=!cameraOff);$("camera").textContent=cameraOff?"🚫":"📹";
+
+ cameraOff=!cameraOff;
+
+ if(localStream)
+   localStream
+     .getVideoTracks()
+     .forEach(t=>t.enabled=!cameraOff);
+
+ $("camera").textContent=
+   cameraOff?"🚫":"📹";
+
 };
+
 
 async function openMedia(){
+
  if(localStream)return;
- localStream=await navigator.mediaDevices.getUserMedia({video:true,audio:true});
+
+ localStream=
+   await navigator.mediaDevices.getUserMedia({
+     video:true,
+     audio:true
+   });
+
  $("localVideo").srcObject=localStream;
+
 }
 
+
 function rtc(){
+
  return new RTCPeerConnection({
+
    iceServers:[
      {urls:"stun:stun.l.google.com:19302"},
      {urls:"stun:stun1.l.google.com:19302"}
    ]
+
  });
+
 }
+
 
 async function startOutgoingCall(){
- if(!selectedUser)return alert("Select a person first.");
+
+ if(!selectedUser)
+   return alert("Select a person first.");
+
  showPage("video");
+
  try{
+
    await openMedia();
-   callId=push(ref(db,"umingleCalls")).key;
-   const callRef=ref(db,"umingleCalls/"+callId);
-   await set(callRef,{caller:currentUser.uid,callee:selectedUser.uid,status:"ringing",createdAt:{".sv":"timestamp"}});
-   await set(ref(db,`umingleIncomingCalls/${selectedUser.uid}/${callId}`),{caller:currentUser.uid,name:currentUser.displayName||"User",photo:currentUser.photoURL||"",createdAt:{".sv":"timestamp"}});
+
+   callId=
+     push(ref(db,"umingleCalls")).key;
+
+   const callRef=
+     ref(db,"umingleCalls/"+callId);
+
+   await set(callRef,{
+     caller:currentUser.uid,
+     callee:selectedUser.uid,
+     status:"ringing",
+     createdAt:{".sv":"timestamp"}
+   });
+
+   await set(
+     ref(
+       db,
+       `umingleIncomingCalls/${selectedUser.uid}/${callId}`
+     ),
+     {
+       caller:currentUser.uid,
+       name:currentUser.displayName||"User",
+       photo:currentUser.photoURL||"",
+       createdAt:{".sv":"timestamp"}
+     }
+   );
+
    await createPeerAsCaller();
-   callStatus("Calling "+(selectedUser.name||"user")+"…");
- }catch(e){callStatus(e.message||"Camera/microphone unavailable.");}
+
+   callStatus(
+     "Calling "+(selectedUser.name||"user")+"…"
+   );
+
+ }
+ catch(e){
+
+   callStatus(
+     e.message||
+     "Camera/microphone unavailable."
+   );
+
+ }
+
 }
+
 
 async function createPeerAsCaller(){
+
  pc=rtc();
- localStream.getTracks().forEach(t=>pc.addTrack(t,localStream));
- pc.ontrack=e=>$("remoteVideo").srcObject=e.streams[0];
- pc.onicecandidate=e=>{if(e.candidate)push(ref(db,`umingleCalls/${callId}/ice/${currentUser.uid}`),e.candidate.toJSON())};
- pc.onconnectionstatechange=()=>{callStatus(pc.connectionState);if(pc.connectionState==="failed")stopCall(true)};
- const offer=await pc.createOffer();await pc.setLocalDescription(offer);
- await update(ref(db,"umingleCalls/"+callId),{offer:{type:offer.type,sdp:offer.sdp},status:"offered"});
- onValue(ref(db,"umingleCalls/"+callId),async snap=>{
-   const c=snap.val();if(!c||!pc)return;
-   if(c.answer&&!pc.currentRemoteDescription){
-     await pc.setRemoteDescription(c.answer);callStatus("Connected");
+
+ localStream
+   .getTracks()
+   .forEach(t=>pc.addTrack(t,localStream));
+
+ pc.ontrack=e=>{
+   $("remoteVideo").srcObject=e.streams[0];
+ };
+
+ pc.onicecandidate=e=>{
+
+   if(e.candidate)
+     push(
+       ref(
+         db,
+         `umingleCalls/${callId}/ice/${currentUser.uid}`
+       ),
+       e.candidate.toJSON()
+     );
+
+ };
+
+ pc.onconnectionstatechange=()=>{
+
+   callStatus(pc.connectionState);
+
+   if(pc.connectionState==="failed")
+     stopCall(true);
+
+ };
+
+ const offer=await pc.createOffer();
+
+ await pc.setLocalDescription(offer);
+
+ await update(
+   ref(db,"umingleCalls/"+callId),
+   {
+     offer:{
+       type:offer.type,
+       sdp:offer.sdp
+     },
+     status:"offered"
    }
- });
- onValue(ref(db,`umingleCalls/${callId}/ice/${selectedUser.uid}`),snap=>{
-   snap.forEach(c=>{pc?.addIceCandidate(new RTCIceCandidate(c.val())).catch(()=>{})});
- });
+ );
+
+ onValue(
+   ref(db,"umingleCalls/"+callId),
+   async snap=>{
+
+     const c=snap.val();
+
+     if(!c||!pc)return;
+
+     if(
+       c.answer &&
+       !pc.currentRemoteDescription
+     ){
+
+       await pc.setRemoteDescription(c.answer);
+
+       callStatus("Connected");
+
+     }
+
+   }
+ );
+
+ onValue(
+   ref(
+     db,
+     `umingleCalls/${callId}/ice/${selectedUser.uid}`
+   ),
+   snap=>{
+
+     snap.forEach(c=>{
+
+       pc?.addIceCandidate(
+         new RTCIceCandidate(c.val())
+       ).catch(()=>{});
+
+     });
+
+   }
+ );
+
 }
+
 
 let incomingUnsub=null;
+
+
 function watchIncomingCalls(){
- if(incomingUnsub)incomingUnsub();
- incomingUnsub=onValue(ref(db,"umingleIncomingCalls/"+currentUser.uid),snap=>{
-   snap.forEach(c=>{
-     const id=c.key,data=c.val();
-     if(processedCalls.has(id))return;
-     if(data?.status==="declined"||data?.status==="ended")return;
-     processedCalls.add(id);incomingCall={id,data};
-     $("callerName").textContent=data.name||"User";$("callerPhoto").src=data.photo||"";
-     $("incomingModal").classList.remove("hidden");
-   });
- });
+
+ if(incomingUnsub)
+   incomingUnsub();
+
+ incomingUnsub=
+   onValue(
+     ref(
+       db,
+       "umingleIncomingCalls/"+currentUser.uid
+     ),
+     snap=>{
+
+       snap.forEach(c=>{
+
+         const id=c.key;
+         const data=c.val();
+
+         if(processedCalls.has(id))
+           return;
+
+         if(
+           data?.status==="declined"||
+           data?.status==="ended"
+         )
+           return;
+
+         processedCalls.add(id);
+
+         incomingCall={
+           id,
+           data
+         };
+
+         $("callerName").textContent=
+           data.name||"User";
+
+         $("callerPhoto").src=
+           data.photo||"";
+
+         $("incomingModal")
+           .classList.remove("hidden");
+
+       });
+
+     }
+   );
+
 }
+
 
 $("acceptCall").onclick=async()=>{
+
  if(!incomingCall)return;
- const incoming=incomingCall;incomingCall=null;$("incomingModal").classList.add("hidden");
- try{await acceptCall(incoming.id,incoming.data)}catch(e){callStatus(e.message||"Could not accept call.")};
+
+ const incoming=incomingCall;
+
+ incomingCall=null;
+
+ $("incomingModal")
+   .classList.add("hidden");
+
+ try{
+
+   await acceptCall(
+     incoming.id,
+     incoming.data
+   );
+
+ }
+ catch(e){
+
+   callStatus(
+     e.message||
+     "Could not accept call."
+   );
+
+ }
+
 };
+
+
 $("declineCall").onclick=async()=>{
+
  if(!incomingCall)return;
- const incoming=incomingCall;incomingCall=null;$("incomingModal").classList.add("hidden");
- await update(ref(db,"umingleCalls/"+incoming.id),{status:"declined"});
- await remove(ref(db,`umingleIncomingCalls/${currentUser.uid}/${incoming.id}`));
+
+ const incoming=incomingCall;
+
+ incomingCall=null;
+
+ $("incomingModal")
+   .classList.add("hidden");
+
+ await update(
+   ref(db,"umingleCalls/"+incoming.id),
+   {status:"declined"}
+ );
+
+ await remove(
+   ref(
+     db,
+     `umingleIncomingCalls/${currentUser.uid}/${incoming.id}`
+   )
+ );
+
 };
+
 
 async function acceptCall(id,data){
+
  callId=id;
- selectedUser={uid:data.caller,name:data.name||"User",photo:data.photo||""};
- $("contactName").textContent=selectedUser.name;$("contactPhoto").src=selectedUser.photo;$("chatName").textContent=selectedUser.name;$("chatPhoto").src=selectedUser.photo;
- showPage("video");await openMedia();
+
+ selectedUser={
+   uid:data.caller,
+   name:data.name||"User",
+   photo:data.photo||""
+ };
+
+ $("contactName").textContent=
+   selectedUser.name;
+
+ $("contactPhoto").src=
+   selectedUser.photo;
+
+ $("chatName").textContent=
+   selectedUser.name;
+
+ $("chatPhoto").src=
+   selectedUser.photo;
+
+ showPage("video");
+
+ await openMedia();
+
  pc=rtc();
- localStream.getTracks().forEach(t=>pc.addTrack(t,localStream));
- pc.ontrack=e=>$("remoteVideo").srcObject=e.streams[0];
- pc.onicecandidate=e=>{if(e.candidate)push(ref(db,`umingleCalls/${callId}/ice/${currentUser.uid}`),e.candidate.toJSON())};
- pc.onconnectionstatechange=()=>{callStatus(pc.connectionState);if(pc.connectionState==="failed")stopCall(true)};
- const snap=await get(ref(db,"umingleCalls/"+id));const call=snap.val();
- if(!call?.offer)throw new Error("Call offer is no longer available.");
- await pc.setRemoteDescription(call.offer);
- const answer=await pc.createAnswer();await pc.setLocalDescription(answer);
- await update(ref(db,"umingleCalls/"+id),{answer:{type:answer.type,sdp:answer.sdp},status:"connected"});
- await remove(ref(db,`umingleIncomingCalls/${currentUser.uid}/${id}`));
- onValue(ref(db,`umingleCalls/${id}/ice/${data.caller}`),s=>{
-   s.forEach(c=>{pc?.addIceCandidate(new RTCIceCandidate(c.val())).catch(()=>{})});
- });
+
+ localStream
+   .getTracks()
+   .forEach(t=>pc.addTrack(t,localStream));
+
+ pc.ontrack=e=>{
+   $("remoteVideo").srcObject=e.streams[0];
+ };
+
+ pc.onicecandidate=e=>{
+
+   if(e.candidate)
+     push(
+       ref(
+         db,
+         `umingleCalls/${callId}/ice/${currentUser.uid}`
+       ),
+       e.candidate.toJSON()
+     );
+
+ };
+
+ pc.onconnectionstatechange=()=>{
+
+   callStatus(pc.connectionState);
+
+   if(pc.connectionState==="failed")
+     stopCall(true);
+
+ };
+
+ const snap=
+   await get(
+     ref(db,"umingleCalls/"+id)
+   );
+
+ const call=snap.val();
+
+ if(!call?.offer)
+   throw new Error(
+     "Call offer is no longer available."
+   );
+
+ await pc.setRemoteDescription(
+   call.offer
+ );
+
+ const answer=
+   await pc.createAnswer();
+
+ await pc.setLocalDescription(
+   answer
+ );
+
+ await update(
+   ref(db,"umingleCalls/"+id),
+   {
+     answer:{
+       type:answer.type,
+       sdp:answer.sdp
+     },
+     status:"connected"
+   }
+ );
+
+ await remove(
+   ref(
+     db,
+     `umingleIncomingCalls/${currentUser.uid}/${id}`
+   )
+ );
+
+ onValue(
+   ref(
+     db,
+     `umingleCalls/${id}/ice/${data.caller}`
+   ),
+   s=>{
+
+     s.forEach(c=>{
+
+       pc?.addIceCandidate(
+         new RTCIceCandidate(c.val())
+       ).catch(()=>{});
+
+     });
+
+   }
+ );
+
  callStatus("Connected");
+
 }
+
 
 async function stopCall(goChat=true){
+
  const id=callId;
+
  if(id&&currentUser){
-   try{await update(ref(db,"umingleCalls/"+id),{status:"ended",endedAt:{".sv":"timestamp"}})}catch{}
-   try{await remove(ref(db,`umingleIncomingCalls/${currentUser.uid}/${id}`))}catch{}
-   if(selectedUser?.uid){try{await remove(ref(db,`umingleIncomingCalls/${selectedUser.uid}/${id}`))}catch{}}
+
+   try{
+     await update(
+       ref(db,"umingleCalls/"+id),
+       {
+         status:"ended",
+         endedAt:{".sv":"timestamp"}
+       }
+     );
+   }catch{}
+
+   try{
+     await remove(
+       ref(
+         db,
+         `umingleIncomingCalls/${currentUser.uid}/${id}`
+       )
+     );
+   }catch{}
+
+   if(selectedUser?.uid){
+
+     try{
+       await remove(
+         ref(
+           db,
+           `umingleIncomingCalls/${selectedUser.uid}/${id}`
+         )
+       );
+     }catch{}
+
+   }
+
  }
- if(pc){pc.onicecandidate=null;pc.close();pc=null}
- if(localStream){localStream.getTracks().forEach(t=>t.stop());localStream=null}
- $("localVideo").srcObject=null;$("remoteVideo").srcObject=null;callId=null;callStatus("Not connected");
- if(goChat)showPage("chat");
+
+ if(pc){
+
+   pc.onicecandidate=null;
+   pc.close();
+   pc=null;
+
+ }
+
+ if(localStream){
+
+   localStream
+     .getTracks()
+     .forEach(t=>t.stop());
+
+   localStream=null;
+
+ }
+
+ $("localVideo").srcObject=null;
+ $("remoteVideo").srcObject=null;
+
+ callId=null;
+
+ callStatus("Not connected");
+
+ if(goChat)
+   showPage("chat");
+
 }
+
 
 async function loadProfile(){
- const s=await get(ref(db,"umingleUsers/"+currentUser.uid));const p=s.val();if(p?.about)$("about").value=p.about;
+
+ const s=
+   await get(
+     ref(db,"umingleUsers/"+currentUser.uid)
+   );
+
+ const p=s.val();
+
+ if(p?.about)
+   $("about").value=p.about;
+
 }
+
+
 $("saveProfile").onclick=async()=>{
- const name=$("profileName").value.trim()||"User";
- await update(ref(db,"umingleUsers/"+currentUser.uid),{name,about:$("about").value.trim()});
- $("sideName").textContent=name;$("topName").textContent=name;$("saveMsg").textContent="Saved.";
+
+ const name=
+   $("profileName").value.trim()||"User";
+
+ await update(
+   ref(
+     db,
+     "umingleUsers/"+currentUser.uid
+   ),
+   {
+     name,
+     about:$("about").value.trim()
+   }
+ );
+
+ $("sideName").textContent=name;
+ $("topName").textContent=name;
+ $("saveMsg").textContent="Saved.";
+
 };
 
-$("reportBtn").onclick=()=>{$("reportReason").value="";$("reportModal").classList.remove("hidden")};
-$("closeReport").onclick=()=>$("reportModal").classList.add("hidden");
+
+$("reportBtn").onclick=()=>{
+
+ $("reportReason").value="";
+
+ $("reportModal")
+   .classList.remove("hidden");
+
+};
+
+
+$("closeReport").onclick=()=>
+  $("reportModal")
+    .classList.add("hidden");
+
+
 $("submitReport").onclick=async()=>{
+
  if(!selectedUser)return;
- const reason=$("reportReason").value.trim();if(!reason)return alert("Enter a reason.");
- await push(ref(db,"umingleReports"),{reporterUid:currentUser.uid,reportedUid:selectedUser.uid,reason,createdAt:{".sv":"timestamp"}});
- $("reportModal").classList.add("hidden");alert("Report submitted.");
+
+ const reason=
+   $("reportReason").value.trim();
+
+ if(!reason)
+   return alert("Enter a reason.");
+
+ await push(
+   ref(db,"umingleReports"),
+   {
+     reporterUid:currentUser.uid,
+     reportedUid:selectedUser.uid,
+     reason,
+     createdAt:{".sv":"timestamp"}
+   }
+ );
+
+ $("reportModal")
+   .classList.add("hidden");
+
+ alert("Report submitted.");
+
 };
 
 
 /* =========================================================
    HANUMAN INTRO
-   ========================================================= */
+========================================================= */
+
 $("enterApp").onclick=()=>{
-  $("hanumanIntro").classList.add("hideIntro");
+ $("hanumanIntro")
+   .classList.add("hideIntro");
 };
 
+
 /* =========================================================
-   REAL REELS — FIREBASE STORAGE + REALTIME DATABASE
-   ========================================================= */
+   REAL REELS — CLOUDINARY + FIREBASE REALTIME DATABASE
+========================================================= */
+
 let reelsUnsub=null;
 
+
 function escapeHtml(value){
-  return String(value||"").replace(/[&<>"']/g,m=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[m]));
+
+ return String(value||"").replace(
+   /[&<>"']/g,
+   m=>({
+     "&":"&amp;",
+     "<":"&lt;",
+     ">":"&gt;",
+     '"':"&quot;",
+     "'":"&#039;"
+   }[m])
+ );
+
 }
+
 
 function reelTime(ts){
-  if(!ts)return "Just now";
-  const d=new Date(ts);
-  if(Number.isNaN(d.getTime()))return "Just now";
-  return d.toLocaleString();
+
+ if(!ts)return "Just now";
+
+ const d=new Date(ts);
+
+ if(Number.isNaN(d.getTime()))
+   return "Just now";
+
+ return d.toLocaleString();
+
 }
+
 
 function renderReel(key,r){
-  const card=document.createElement("article");
-  card.className="reelCard";
-  card.innerHTML=`
-    <video src="${escapeHtml(r.videoUrl)}" playsinline loop muted preload="metadata"></video>
-    <div class="reelShade"></div>
-    <div class="reelInfo">
-      <div class="reelUser">🚩 ${escapeHtml(r.name||"Rishant")} <span style="color:#ffd166">• Hanuman Ansh</span></div>
-      <div class="reelCaption">${escapeHtml(r.caption||"Jai Shri Ram 🚩")}</div>
-      <div class="reelTag">${escapeHtml(reelTime(r.createdAt))}</div>
-    </div>
-    <div class="reelActions">
-      <button class="reelAction" title="Mute / unmute">🔇</button>
-      <button class="reelAction" title="Play / pause">▶</button>
-    </div>
-  `;
-  const video=card.querySelector("video");
-  const buttons=card.querySelectorAll(".reelAction");
-  buttons[0].onclick=()=>{video.muted=!video.muted;buttons[0].textContent=video.muted?"🔇":"🔊"};
-  buttons[1].onclick=()=>{if(video.paused){video.play().catch(()=>{});buttons[1].textContent="⏸"}else{video.pause();buttons[1].textContent="▶"}};
-  video.addEventListener("click",()=>{if(video.paused){video.play().catch(()=>{})}else video.pause()});
-  return card;
+
+ const card=document.createElement("article");
+
+ card.className="reelCard";
+
+ card.innerHTML=`
+
+   <video
+     src="${escapeHtml(r.videoUrl)}"
+     playsinline
+     loop
+     muted
+     preload="metadata">
+   </video>
+
+   <div class="reelShade"></div>
+
+   <div class="reelInfo">
+
+     <div class="reelUser">
+       🚩 ${escapeHtml(r.name||"Rishant")}
+       <span style="color:#ffd166">
+         • Hanuman Ansh
+       </span>
+     </div>
+
+     <div class="reelCaption">
+       ${escapeHtml(
+         r.caption||"Jai Shri Ram 🚩"
+       )}
+     </div>
+
+     <div class="reelTag">
+       ${escapeHtml(
+         reelTime(r.createdAt)
+       )}
+     </div>
+
+   </div>
+
+   <div class="reelActions">
+
+     <button
+       class="reelAction"
+       title="Mute / unmute">
+       🔇
+     </button>
+
+     <button
+       class="reelAction"
+       title="Play / pause">
+       ▶
+     </button>
+
+   </div>
+ `;
+
+
+ const video=
+   card.querySelector("video");
+
+ const buttons=
+   card.querySelectorAll(
+     ".reelAction"
+   );
+
+
+ buttons[0].onclick=()=>{
+
+   video.muted=!video.muted;
+
+   buttons[0].textContent=
+     video.muted?"🔇":"🔊";
+
+ };
+
+
+ buttons[1].onclick=()=>{
+
+   if(video.paused){
+
+     video.play().catch(()=>{});
+
+     buttons[1].textContent="⏸";
+
+   }else{
+
+     video.pause();
+
+     buttons[1].textContent="▶";
+
+   }
+
+ };
+
+
+ video.addEventListener("click",()=>{
+
+   if(video.paused)
+     video.play().catch(()=>{});
+   else
+     video.pause();
+
+ });
+
+
+ return card;
+
 }
+
 
 function watchReels(){
-  if(reelsUnsub)reelsUnsub();
-  const r=ref(db,"umingleReels");
-  reelsUnsub=onValue(r,snap=>{
-    const feed=$("reelsFeed");
-    feed.innerHTML="";
-    const items=[];
-    snap.forEach(c=>{const v=c.val();if(v?.videoUrl)items.push({key:c.key,...v})});
-    items.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
-    if(!items.length){
-      feed.innerHTML='<div class="reelEmpty"><b>No Reels yet 🚩</b>Upload the first Hanuman Ansh Reel.</div>';
-      return;
-    }
-    items.forEach(item=>feed.appendChild(renderReel(item.key,item)));
-    setupReelAutoplay();
-  });
+
+ if(reelsUnsub)
+   reelsUnsub();
+
+ const r=
+   ref(db,"umingleReels");
+
+ reelsUnsub=
+   onValue(r,snap=>{
+
+     const feed=
+       $("reelsFeed");
+
+     feed.innerHTML="";
+
+     const items=[];
+
+     snap.forEach(c=>{
+
+       const v=c.val();
+
+       if(v?.videoUrl)
+         items.push({
+           key:c.key,
+           ...v
+         });
+
+     });
+
+     items.sort(
+       (a,b)=>
+         (b.createdAt||0)-
+         (a.createdAt||0)
+     );
+
+     if(!items.length){
+
+       feed.innerHTML=
+         '<div class="reelEmpty">'+
+         '<b>No Reels yet 🚩</b>'+
+         'Upload the first Hanuman Ansh Reel.'+
+         '</div>';
+
+       return;
+
+     }
+
+     items.forEach(item=>
+       feed.appendChild(
+         renderReel(
+           item.key,
+           item
+         )
+       )
+     );
+
+     setupReelAutoplay();
+
+   });
+
 }
+
 
 function setupReelAutoplay(){
-  const videos=[...document.querySelectorAll("#reelsFeed video")];
-  if(!("IntersectionObserver" in window)){
-    videos[0]?.play().catch(()=>{});
-    return;
-  }
-  const observer=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      const v=entry.target;
-      if(entry.isIntersecting && entry.intersectionRatio>.65){
-        videos.forEach(other=>{if(other!==v)other.pause()});
-        v.play().catch(()=>{});
-      }else v.pause();
-    });
-  },{threshold:[.65]});
-  videos.forEach(v=>observer.observe(v));
+
+ const videos=[
+   ...document.querySelectorAll(
+     "#reelsFeed video"
+   )
+ ];
+
+ if(!("IntersectionObserver" in window)){
+
+   videos[0]?.play().catch(()=>{});
+
+   return;
+
+ }
+
+
+ const observer=
+   new IntersectionObserver(
+     entries=>{
+
+       entries.forEach(entry=>{
+
+         const v=entry.target;
+
+         if(
+           entry.isIntersecting &&
+           entry.intersectionRatio>.65
+         ){
+
+           videos.forEach(other=>{
+
+             if(other!==v)
+               other.pause();
+
+           });
+
+           v.play().catch(()=>{});
+
+         }else{
+
+           v.pause();
+
+         }
+
+       });
+
+     },
+     {threshold:[.65]}
+   );
+
+
+ videos.forEach(v=>
+   observer.observe(v)
+ );
+
 }
+
+
+/* =========================================================
+   CLOUDINARY REEL UPLOAD
+========================================================= */
 
 async function uploadReel(){
-  if(!currentUser)return alert("Please sign in first.");
-  const file=$("reelFile").files[0];
-  const caption=$("reelCaption").value.trim();
-  if(!file)return alert("Please select a video.");
-  if(!file.type.startsWith("video/"))return alert("Please select a video file.");
-  const maxSize=100*1024*1024;
-  if(file.size>maxSize)return alert("Please keep the Reel under 100 MB.");
 
-  const btn=$("uploadReel"),bar=$("uploadBar"),progress=$("uploadProgress"),status=$("uploadStatus");
-  btn.disabled=true;progress.style.display="block";bar.style.width="0%";status.textContent="Preparing upload…";
+ if(!currentUser)
+   return alert("Please sign in first.");
 
-  try{
-    const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
-    const path=`reels/${currentUser.uid}/${Date.now()}_${safeName}`;
-    const fileRef=storageRef(storage,path);
-    const task=uploadBytesResumable(fileRef,file,{contentType:file.type});
+ const file=
+   $("reelFile").files[0];
 
-    await new Promise((resolve,reject)=>{
-      task.on("state_changed",
-        snap=>{
-          const pct=Math.round((snap.bytesTransferred/snap.totalBytes)*100);
-          bar.style.width=pct+"%";status.textContent=`Uploading ${pct}%`;
-        },
-        reject,
-        resolve
-      );
-    });
+ const caption=
+   $("reelCaption").value.trim();
 
-    const videoUrl=await getDownloadURL(task.snapshot.ref);
-    const reelRef=push(ref(db,"umingleReels"));
-    await set(reelRef,{
-      uid:currentUser.uid,
-      name:currentUser.displayName||"Rishant",
-      photo:currentUser.photoURL||"",
-      caption:caption||"Jai Shri Ram 🚩",
-      videoUrl,
-      storagePath:path,
-      createdAt:Date.now()
-    });
+ if(!file)
+   return alert("Please select a video.");
 
-    $("reelFile").value="";
-    $("reelCaption").value="";
-    bar.style.width="100%";
-    status.textContent="Reel published successfully 🚩";
-  }catch(e){
-    console.error(e);
-    status.textContent=e.message||"Upload failed.";
-  }finally{
-    btn.disabled=false;
-    setTimeout(()=>{progress.style.display="none"},1200);
-  }
+ if(!file.type.startsWith("video/"))
+   return alert("Please select a video file.");
+
+ const maxSize=
+   100*1024*1024;
+
+ if(file.size>maxSize)
+   return alert(
+     "Please keep the Reel under 100 MB."
+   );
+
+
+ const btn=
+   $("uploadReel");
+
+ const bar=
+   $("uploadBar");
+
+ const progress=
+   $("uploadProgress");
+
+ const status=
+   $("uploadStatus");
+
+
+ btn.disabled=true;
+
+ progress.style.display="block";
+
+ bar.style.width="0%";
+
+ status.textContent=
+   "Preparing upload…";
+
+
+ try{
+
+   /* Cloudinary settings */
+   const cloudName="kopebleo";
+   const uploadPreset="reels_upload";
+
+   const uploadUrl=
+     `https://api.cloudinary.com/v1_1/${cloudName}/video/upload`;
+
+
+   const formData=
+     new FormData();
+
+   formData.append(
+     "file",
+     file
+   );
+
+   formData.append(
+     "upload_preset",
+     uploadPreset
+   );
+
+   formData.append(
+     "folder",
+     "reels"
+   );
+
+
+   status.textContent=
+     "Uploading 0%";
+
+
+   const xhr=
+     new XMLHttpRequest();
+
+
+   const videoUrl=
+     await new Promise(
+       (resolve,reject)=>{
+
+         xhr.open(
+           "POST",
+           uploadUrl,
+           true
+         );
+
+
+         xhr.upload.onprogress=
+           event=>{
+
+             if(event.lengthComputable){
+
+               const pct=
+                 Math.round(
+                   (event.loaded/
+                    event.total)*100
+                 );
+
+               bar.style.width=
+                 pct+"%";
+
+               status.textContent=
+                 `Uploading ${pct}%`;
+
+             }
+
+           };
+
+
+         xhr.onload=()=>{
+
+           if(
+             xhr.status>=200 &&
+             xhr.status<300
+           ){
+
+             try{
+
+               const result=
+                 JSON.parse(
+                   xhr.responseText
+                 );
+
+
+               if(result.secure_url){
+
+                 resolve(
+                   result.secure_url
+                 );
+
+               }else{
+
+                 reject(
+                   new Error(
+                     "Cloudinary did not return a video URL."
+                   )
+                 );
+
+               }
+
+             }catch{
+
+               reject(
+                 new Error(
+                   "Invalid Cloudinary response."
+                 )
+               );
+
+             }
+
+           }else{
+
+             try{
+
+               const error=
+                 JSON.parse(
+                   xhr.responseText
+                 );
+
+               reject(
+                 new Error(
+                   error?.error?.message||
+                   "Cloudinary upload failed."
+                 )
+               );
+
+             }catch{
+
+               reject(
+                 new Error(
+                   "Cloudinary upload failed."
+                 )
+               );
+
+             }
+
+           }
+
+         };
+
+
+         xhr.onerror=()=>{
+
+           reject(
+             new Error(
+               "Network error during Cloudinary upload."
+             )
+           );
+
+         };
+
+
+         xhr.onabort=()=>{
+
+           reject(
+             new Error(
+               "Upload cancelled."
+             )
+           );
+
+         };
+
+
+         xhr.send(formData);
+
+       }
+     );
+
+
+   /* Save Reel information in Firebase */
+   const reelRef=
+     push(
+       ref(db,"umingleReels")
+     );
+
+
+   await set(
+     reelRef,
+     {
+       uid:currentUser.uid,
+
+       name:
+         currentUser.displayName||
+         "Rishant",
+
+       photo:
+         currentUser.photoURL||
+         "",
+
+       caption:
+         caption||
+         "Jai Shri Ram 🚩",
+
+       videoUrl,
+
+       createdAt:
+         Date.now()
+     }
+   );
+
+
+   $("reelFile").value="";
+   $("reelCaption").value="";
+
+   bar.style.width="100%";
+
+   status.textContent=
+     "Reel published successfully 🚩";
+
+
+ }catch(e){
+
+   console.error(e);
+
+   status.textContent=
+     e.message||
+     "Upload failed.";
+
+ }finally{
+
+   btn.disabled=false;
+
+   setTimeout(()=>{
+
+     progress.style.display="none";
+
+   },1200);
+
+ }
+
 }
 
-$("uploadReel").onclick=uploadReel;
-$("refreshReels").onclick=watchReels;
+
+$("uploadReel").onclick=
+  uploadReel;
+
+
+$("refreshReels").onclick=
+  watchReels;
+
 
 function errorText(e){
- if(e.code==="auth/unauthorized-domain")return"Add this website domain in Firebase Authentication → Settings → Authorized domains.";
- if(e.code==="auth/popup-blocked")return"Allow popups for Google Login.";
- if(e.code==="auth/operation-not-allowed")return"Enable Google sign-in in Firebase Authentication.";
- return e.message||"Login failed.";
+
+ if(e.code==="auth/unauthorized-domain")
+   return "Add this website domain in Firebase Authentication → Settings → Authorized domains.";
+
+ if(e.code==="auth/popup-blocked")
+   return "Allow popups for Google Login.";
+
+ if(e.code==="auth/operation-not-allowed")
+   return "Enable Google sign-in in Firebase Authentication.";
+
+ return e.message||
+   "Login failed.";
+
 }
+
 </script>
+
 </body>
 </html>
+```
