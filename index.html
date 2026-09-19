@@ -66,6 +66,23 @@ button{cursor:pointer}.hidden{display:none!important}
 .modalActions{display:flex;gap:8px;margin-top:12px}.modalActions button{flex:1;padding:11px;border-radius:9px;border:1px solid var(--border);background:#182137;color:#fff}.modalActions .danger{background:var(--red);border:0}
 .callModal{text-align:center}.callModal .caller{display:flex;justify-content:center;align-items:center;gap:10px;margin:18px 0}.accept{background:#24a96b!important}.decline{background:#d9455c!important}
 
+/* Mobile slide-out navigation */
+.mobileMenuBtn{display:none;border:1px solid #70400f;background:#241307;color:#fff;width:42px;height:42px;border-radius:11px;font-size:22px;align-items:center;justify-content:center;flex:0 0 auto}
+.mobileMenuShade{display:none}
+@media(max-width:820px){
+  .mobileMenuBtn{display:flex}
+  .top{gap:8px}
+  .brand{min-width:0;flex:1}
+  .brand>div:last-child{min-width:0}
+  .brand b,.brand small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+  .side{display:block!important;position:fixed;left:0;top:0;bottom:0;width:min(330px,86vw);height:100dvh;z-index:10020;border-radius:0 20px 20px 0;padding:16px;overflow:auto;transform:translateX(-110%);transition:transform .25s ease;box-shadow:20px 0 60px #0009}
+  .side.mobileOpen{transform:translateX(0)}
+  .mobileMenuShade{display:block;position:fixed;inset:0;background:#0009;z-index:10019;opacity:0;pointer-events:none;transition:opacity .25s ease}
+  .mobileMenuShade.mobileOpen{opacity:1;pointer-events:auto}
+  .side .menu{display:block!important}
+  .side .menu button{display:block;width:100%;text-align:left;font-size:16px;padding:13px 14px;min-height:50px;margin-bottom:5px}
+}
+
 /* =========================================================
    MOBILE RESPONSIVE + LOGO
 ========================================================= */
@@ -265,13 +282,13 @@ background:radial-gradient(circle at 50% 35%,#ff9b20 0,transparent 25%),linear-g
      Put intro.mp4 and int.mp4 in the same folder as this HTML.
 ========================================================= -->
 <div id="videoIntroOverlay" class="videoOverlay videoIntroOverlay">
-  <video id="introVideo" playsinline muted autoplay preload="auto">
+  <video id="introVideo" playsinline autoplay preload="auto">
     <source src="intro.mp4" type="video/mp4">
   </video>
 </div>
 
 <div id="interstitialOverlay" class="videoOverlay hidden">
-  <video id="interstitialVideo" playsinline muted preload="auto">
+  <video id="interstitialVideo" playsinline preload="auto">
     <source src="int.mp4" type="video/mp4">
   </video>
 </div>
@@ -301,6 +318,7 @@ background:radial-gradient(circle at 50% 35%,#ff9b20 0,transparent 25%),linear-g
 <div id="app" class="hidden">
 
 <header class="top">
+  <button class="mobileMenuBtn" id="mobileMenuBtn" aria-label="Open menu">☰</button>
   <div class="brand">
     <div class="logo brandLogo" style="width:42px;height:42px;border-radius:50%;font-size:18px;margin:0;overflow:hidden">
       <img src="collab-logo.png" alt="Rishant Omegle × Hanuman Ansh">
@@ -341,7 +359,7 @@ background:radial-gradient(circle at 50% 35%,#ff9b20 0,transparent 25%),linear-g
     <button data-page="profile">👤 Profile</button>
   </div>
 </aside>
-
+<div id="mobileMenuShade" class="mobileMenuShade"></div>
 <section class="card">
 
 <div id="homePage" class="page home">
@@ -1588,6 +1606,7 @@ interstitialVideo.addEventListener("error",closeInterstitialVideo);
 
 // If autoplay is blocked, the first user interaction starts the intro.
 const startIntroOnInteraction=()=>{
+  enableVideoSound();
   if(!videoIntroOverlay.classList.contains("hidden")){
     const p=introVideo.play();
     if(p?.catch)p.catch(()=>{});
@@ -1599,6 +1618,44 @@ document.addEventListener("click",startIntroOnInteraction,{once:true});
 document.addEventListener("touchstart",startIntroOnInteraction,{once:true});
 
 // The schedule starts when the opening intro video finishes.
+
+/* =========================================================
+   MOBILE SLIDER + VIDEO SOUND
+========================================================= */
+const mobileMenuBtn=$("mobileMenuBtn");
+const mobileMenuShade=$("mobileMenuShade");
+const mobileSide=document.querySelector(".side");
+function closeMobileMenu(){
+  mobileSide?.classList.remove("mobileOpen");
+  mobileMenuShade?.classList.remove("mobileOpen");
+}
+function openMobileMenu(){
+  mobileSide?.classList.add("mobileOpen");
+  mobileMenuShade?.classList.add("mobileOpen");
+}
+mobileMenuBtn?.addEventListener("click",()=>{
+  if(mobileSide?.classList.contains("mobileOpen")) closeMobileMenu();
+  else openMobileMenu();
+});
+mobileMenuShade?.addEventListener("click",closeMobileMenu);
+document.querySelectorAll(".side .menu button").forEach(btn=>btn.addEventListener("click",closeMobileMenu));
+
+function enableVideoSound(){
+  document.querySelectorAll("video").forEach(v=>{
+    try{v.muted=false; v.volume=1;}catch{}
+  });
+  try{
+    if(!videoIntroOverlay.classList.contains("hidden")){
+      const p=introVideo.play(); if(p?.catch)p.catch(()=>{});
+    }
+    if(!interstitialOverlay.classList.contains("hidden")){
+      const p=interstitialVideo.play(); if(p?.catch)p.catch(()=>{});
+    }
+  }catch{}
+}
+document.addEventListener("pointerdown",enableVideoSound,{once:true,passive:true});
+document.addEventListener("touchstart",enableVideoSound,{once:true,passive:true});
+document.addEventListener("keydown",enableVideoSound,{once:true});
 
 /* =========================================================
    HANUMAN INTRO
@@ -1660,7 +1717,6 @@ function renderReel(key,r){
      src="${escapeHtml(r.videoUrl)}"
      playsinline
      loop
-     muted
      preload="metadata">
    </video>
 
