@@ -75,12 +75,12 @@ button{cursor:pointer}.hidden{display:none!important}
   .brand{min-width:0;flex:1}
   .brand>div:last-child{min-width:0}
   .brand b,.brand small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
-  .side{display:block!important;position:fixed;left:0;top:0;bottom:0;width:min(330px,86vw);height:100dvh;z-index:10020;border-radius:0 20px 20px 0;padding:16px;overflow:auto;transform:translateX(-110%);transition:transform .25s ease;box-shadow:20px 0 60px #0009}
-  .side.mobileOpen{transform:translateX(0)}
+  .side{display:block!important;pointer-events:auto;position:fixed;left:0;top:0;bottom:0;width:min(330px,86vw);height:100dvh;z-index:10020;border-radius:0 20px 20px 0;padding:16px;overflow:auto;transform:translateX(-110%);transition:transform .25s ease;box-shadow:20px 0 60px #0009}
+  .side.mobileOpen{transform:translateX(0);pointer-events:auto}
   .mobileMenuShade{display:block;position:fixed;inset:0;background:#0009;z-index:10019;opacity:0;pointer-events:none;transition:opacity .25s ease}
   .mobileMenuShade.mobileOpen{opacity:1;pointer-events:auto}
   .side .menu{display:block!important}
-  .side .menu button{display:block;width:100%;text-align:left;font-size:16px;padding:13px 14px;min-height:50px;margin-bottom:5px}
+  .side .menu button{display:block;width:100%;text-align:left;font-size:16px;padding:13px 14px;min-height:50px;margin-bottom:5px;position:relative;z-index:10030;pointer-events:auto}
 }
 
 /* =========================================================
@@ -650,18 +650,23 @@ let processedCalls=new Set();
 
 function showPage(name){
 
+ const target=document.getElementById(name+"Page");
+ if(!target)return;
+
  document.querySelectorAll(".page")
    .forEach(p=>p.classList.add("hidden"));
 
- $(name+"Page").classList.remove("hidden");
+ target.classList.remove("hidden");
 
  document.querySelectorAll(".menu button")
-   .forEach(b=>
-     b.classList.toggle(
-       "active",
-       b.dataset.page===name
-     )
-   );
+   .forEach(b=>{
+     b.classList.toggle("active",b.dataset.page===name);
+   });
+
+ // On mobile, selecting any navigation item closes the drawer.
+ closeMobileMenuSafe();
+
+ window.scrollTo({top:0,behavior:"smooth"});
 }
 
 
@@ -769,9 +774,14 @@ function watchOnlineCount(){
 
 
 document.querySelectorAll(".menu button")
-.forEach(b=>
- b.onclick=()=>showPage(b.dataset.page)
-);
+.forEach(b=>{
+  b.type="button";
+  b.addEventListener("click",(e)=>{
+    e.preventDefault();
+    e.stopPropagation();
+    showPage(b.dataset.page);
+  });
+});
 
 
 $("findBtn").onclick=()=>{
@@ -1629,6 +1639,11 @@ function closeMobileMenu(){
   mobileSide?.classList.remove("mobileOpen");
   mobileMenuShade?.classList.remove("mobileOpen");
 }
+function closeMobileMenuSafe(){
+  // Works whether the mobile menu code has already initialized or not.
+  document.querySelector(".side")?.classList.remove("mobileOpen");
+  document.getElementById("mobileMenuShade")?.classList.remove("mobileOpen");
+}
 function openMobileMenu(){
   mobileSide?.classList.add("mobileOpen");
   mobileMenuShade?.classList.add("mobileOpen");
@@ -1638,7 +1653,6 @@ mobileMenuBtn?.addEventListener("click",()=>{
   else openMobileMenu();
 });
 mobileMenuShade?.addEventListener("click",closeMobileMenu);
-document.querySelectorAll(".side .menu button").forEach(btn=>btn.addEventListener("click",closeMobileMenu));
 
 function enableVideoSound(){
   document.querySelectorAll("video").forEach(v=>{
